@@ -13,17 +13,11 @@ public class UserScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_screen);
-        logoutOnPressed();
     }
 
-    public void logoutOnPressed() {
+    public void logoutOnPressed(View view) {
+        Intent intent = new Intent(this, WelcomeScreen.class);
         Button loginButton = (Button) findViewById(R.id.logoutButton);
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), WelcomeScreen.class);
-                view.getContext().startActivity(intent);}
-        });
-        finish();
+        startActivity(intent);
     }
 }
