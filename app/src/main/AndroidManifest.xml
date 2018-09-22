@@ -18,6 +18,7 @@
         </activity>
         <activity android:name=".UserScreen"></activity>
         <activity android:name="Register"></activity>
+        <activity android:name=".Login"></activity>
     </application>
 
 </manifest>
