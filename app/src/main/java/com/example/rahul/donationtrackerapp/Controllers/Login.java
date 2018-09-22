@@ -19,7 +19,6 @@ public class Login extends AppCompatActivity {
     private EditText password;
     private Button login_button;
     private Button canel_button;
-    private CheckBox showPassword;
 
 
     @Override
@@ -37,7 +36,6 @@ public class Login extends AppCompatActivity {
         username = findViewById(R.id.editText_username);
         password = findViewById(R.id.editText_password);
         login_button = findViewById(R.id.button_login);
-        showPassword = findViewById(R.id.checkBox);
 
 
     }
