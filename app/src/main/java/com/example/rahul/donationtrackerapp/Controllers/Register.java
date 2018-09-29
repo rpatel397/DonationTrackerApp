@@ -1,10 +1,8 @@
 package com.example.rahul.donationtrackerapp.Controllers;
 
 import android.content.Intent;
-import android.os.Parcel;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,7 +14,8 @@ import android.widget.Toast;
 import java.util.Arrays;
 import java.util.List;
 
-public class Register extends AppCompatActivity {
+public class Register extends AppCompatActivity  {
+
     public static List<String> legalAccounts = Arrays.asList("USER", "Location Employee", "Admin");
 
     private EditText name;
@@ -27,20 +26,10 @@ public class Register extends AppCompatActivity {
     private String account;
 
 
-    public static int findPosition(String code) {
-        int i = 0;
-        while (i < legalAccounts.size()) {
-            if (code.equals(legalAccounts.get(i))) return i;
-            ++i;
-        }
-        return 0;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
 
         name = findViewById(R.id.editText_Name);
         password = findViewById(R.id.editText_Password);
@@ -49,10 +38,10 @@ public class Register extends AppCompatActivity {
         accountType = findViewById(R.id.spinner_AccountType);
 
 
-
         ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, legalAccounts);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         accountType.setAdapter(adapter);
+
     }
 
 
@@ -70,7 +59,7 @@ public class Register extends AppCompatActivity {
         }
     }
 
-    public void cancelOnPressed(View view) {
+    public void onCancelPressed(View view) {
         Intent intent = new Intent(Register.this, WelcomeScreen.class);
         setContentView(R.layout.activity_welcome_screen);
         startActivity(intent);
