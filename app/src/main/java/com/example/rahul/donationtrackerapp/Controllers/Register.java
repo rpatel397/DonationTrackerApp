@@ -18,7 +18,7 @@ import java.util.List;
 
 public class Register extends AppCompatActivity  {
 
-    public static List<String> legalAccounts = Arrays.asList("USER", "Location Employee", "Admin");
+    public static List<String> legalAccounts = Arrays.asList("USER", "Location Employee", "Admin", "Manager");
 
     private EditText name;
     private EditText id;
@@ -61,7 +61,7 @@ public class Register extends AppCompatActivity  {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString(id.getText().toString() + "_0", name.getText().toString());
                 editor.putString(id.getText().toString() + "_1", password.getText().toString());
-                editor.putString(id.getText().toString() + "_2", accountType().getSelectedItem.toString());
+                editor.putString(id.getText().toString() + "_2", accountType.getSelectedItem().toString());
                 editor.commit();
                 Toast.makeText(Register.this,"Registration Successful",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(Register.this, UserScreen.class));
