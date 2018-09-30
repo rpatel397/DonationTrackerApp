@@ -1,7 +1,9 @@
 package com.example.rahul.donationtrackerapp.Controllers;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,14 +17,14 @@ public class Login extends AppCompatActivity {
     private EditText password;
     private Button login_button;
     private Button canel_button;
-
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         LoginButton();
-
+        sharedPreferences = getSharedPreferences("myprefs", Context.MODE_PRIVATE);
 
     }
 
@@ -36,9 +38,14 @@ public class Login extends AppCompatActivity {
     }
 
     public void loginOnPressed(View view){
-        if (username.getText().toString().equals("user") && password.getText().toString().equals("pass")) {
-            Toast.makeText(Login.this,"Login Successful",Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(Login.this, UserScreen.class));
+        if (sharedPreferences.contains(username.getText().toString() + "_0")) {
+            if (password.getText().toString().equals(sharedPreferences.getString(username.getText().toString() + "_0", null))){
+                Toast.makeText(Login.this,"Login Successful",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(Login.this, UserScreen.class));
+            } else {
+                Toast.makeText(Login.this,"Login Failed",Toast.LENGTH_SHORT).show();
+                password.setText("");
+            }
         }else {
             Toast.makeText(Login.this,"Login Failed",Toast.LENGTH_SHORT).show();
             password.setText("");

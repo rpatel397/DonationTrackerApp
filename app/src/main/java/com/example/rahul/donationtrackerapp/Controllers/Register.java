@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.content.SharedPreferences;
+import android.content.Context;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,6 +26,7 @@ public class Register extends AppCompatActivity  {
     private Button register_button;
     private Spinner accountType;
     private String account;
+    private SharedPreferences sharedPreferences;
 
 
     @Override
@@ -36,6 +39,7 @@ public class Register extends AppCompatActivity  {
         id =  findViewById(R.id.editText_ID);
         register_button = findViewById(R.id.button_registrationLogin);
         accountType = findViewById(R.id.spinner_AccountType);
+        sharedPreferences = getSharedPreferences("myprefs", Context.MODE_PRIVATE);
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, legalAccounts);
@@ -46,16 +50,23 @@ public class Register extends AppCompatActivity  {
 
 
     public void registerOnPressed(View view){
-        if (name.getText().toString().equals("user") && password.getText().toString().equals("pass") && id.getText().toString().equals("FB54")){
-            Toast.makeText(Register.this,"Registration Successful",Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(Register.this, UserScreen.class));
-        }else if (name.getText().toString().equals("") || password.getText().toString().equals("") || id.getText().toString().equals("")) {
+        if (name.getText().toString().equals("") || password.getText().toString().equals("") || id.getText().toString().equals("")) {
             Toast.makeText(Register.this, "Complete all fields", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(Register.this, Register.class));
         }else {
-            Toast.makeText(Register.this, "Registration Failed", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(Register.this, Register.class));
-            finish();
+            if (sharedPreferences.contains(name.getText().toString() + "_0")) {
+                Toast.makeText(Register.this, "User already registered", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(Register.this, Register.class));
+            } else {
+                String[] userInfo = new String[] {password.getText().toString(), id.getText().toString(), account};
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(name.getText().toString() + "_0", password.getText().toString());
+                editor.putString(name.getText().toString() + "_1", accountType.getSelectedItem().toString());
+                editor.putString(name.getText().toString() + "_2", password.getText().toString());
+                editor.commit();
+                Toast.makeText(Register.this,"Registration Successful",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(Register.this, UserScreen.class));
+            }
         }
     }
 
