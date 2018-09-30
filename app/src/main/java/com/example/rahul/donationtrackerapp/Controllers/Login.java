@@ -38,8 +38,8 @@ public class Login extends AppCompatActivity {
     }
 
     public void loginOnPressed(View view){
-        if (sharedPreferences.contains(username.getText().toString() + "_0")) {
-            if (password.getText().toString().equals(sharedPreferences.getString(username.getText().toString() + "_0", null))){
+        if (sharedPreferences.contains(username.getText().toString() + "_1")) {
+            if (password.getText().toString().equals(sharedPreferences.getString(username.getText().toString() + "_1", null))){
                 Toast.makeText(Login.this,"Login Successful",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(Login.this, UserScreen.class));
             } else {

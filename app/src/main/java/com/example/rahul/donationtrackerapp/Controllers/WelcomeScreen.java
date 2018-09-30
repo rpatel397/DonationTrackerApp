@@ -22,7 +22,7 @@ public class WelcomeScreen extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("myprefs", Context.MODE_PRIVATE);
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("user_0", "pass");
+        editor.putString("user_1", "pass");
         editor.commit();
     }
 

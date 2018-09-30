@@ -54,15 +54,14 @@ public class Register extends AppCompatActivity  {
             Toast.makeText(Register.this, "Complete all fields", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(Register.this, Register.class));
         }else {
-            if (sharedPreferences.contains(name.getText().toString() + "_0")) {
+            if (sharedPreferences.contains(id.getText().toString() + "_0")) {
                 Toast.makeText(Register.this, "User already registered", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(Register.this, Register.class));
             } else {
-                String[] userInfo = new String[] {password.getText().toString(), id.getText().toString(), account};
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString(name.getText().toString() + "_0", password.getText().toString());
-                editor.putString(name.getText().toString() + "_1", accountType.getSelectedItem().toString());
-                editor.putString(name.getText().toString() + "_2", password.getText().toString());
+                editor.putString(id.getText().toString() + "_0", name.getText().toString());
+                editor.putString(id.getText().toString() + "_1", password.getText().toString());
+                editor.putString(id.getText().toString() + "_2", accountType().getSelectedItem.toString());
                 editor.commit();
                 Toast.makeText(Register.this,"Registration Successful",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(Register.this, UserScreen.class));
