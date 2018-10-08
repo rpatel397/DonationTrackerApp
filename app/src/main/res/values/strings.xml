@@ -2,7 +2,6 @@
     <string name="app_name">DonationTrackerApp</string>
 
 
-
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_user">UserActivity</string>
@@ -12,7 +11,6 @@
     <string name="attempt_text">Attempt</string>
     <string name="button_login_text">Login</string>
     <string name="screen_page_text">Welcome  to the second page</string>
-
 
 
 </resources>

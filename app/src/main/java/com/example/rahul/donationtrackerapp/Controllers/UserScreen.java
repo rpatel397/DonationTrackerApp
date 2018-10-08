@@ -19,5 +19,12 @@ public class UserScreen extends AppCompatActivity {
         Intent intent = new Intent(this, WelcomeScreen.class);
         Button loginButton = (Button) findViewById(R.id.logoutButton);
         startActivity(intent);
+        finish();
+    }
+
+    public void locationListOnPressed(View view) {
+        Intent intent = new Intent(this, LocationList.class);
+        Button locationButton = (Button) findViewById(R.id.locationButton);
+        startActivity(intent);
     }
 }
