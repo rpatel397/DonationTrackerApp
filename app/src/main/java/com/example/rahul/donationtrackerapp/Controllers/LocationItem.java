@@ -17,10 +17,6 @@ public class LocationItem {
     private String phone;
     private String website;
 
-    public LocationItem(){
-
-    }
-
     public LocationItem(int key, String name, double latitude, double longitude, String address, String city, String state, int zip, String type, String phone, String website) {
         this.key = key;
         this.name = name;

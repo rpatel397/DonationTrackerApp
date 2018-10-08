@@ -20,10 +20,15 @@ public class LocationList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_list);
+
+        View recyclerView = findViewById(R.id.locationitem_list);
+        assert recyclerView != null;
+        setupRecyclerView((RecyclerView) recyclerView);
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
         recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(SimpleModel.INSTANCE.getItems()));
+        Log.d("Test", "Read simple model");
     }
 
     public class SimpleItemRecyclerViewAdapter
@@ -86,7 +91,7 @@ public class LocationList extends AppCompatActivity {
             public ViewHolder(View view) {
                 super(view);
                 mView = view;
-                mIdView = (TextView) view.findViewById(R.id.id);
+                mIdView = (TextView) view.findViewById(R.id.key);
                 mContentView = (TextView) view.findViewById(R.id.content);
             }
 

@@ -39,8 +39,9 @@ public class Login extends AppCompatActivity {
     }
 
     public void loginOnPressed(View view){
-        Log.d("LOGIN", "okay");
-
+        //auto login
+        username.setText("user");
+        password.setText("pass");
 
         if (sharedPreferences.contains(username.getText().toString() + "_1")) {
             if (password.getText().toString().equals(sharedPreferences.getString(username.getText().toString() + "_1", null))){
@@ -62,9 +63,4 @@ public class Login extends AppCompatActivity {
         startActivity(intent);
 
     }
-
-
-
-
-
 }
