@@ -69,6 +69,9 @@ public class WelcomeScreen extends AppCompatActivity {
                 model.addItem(new LocationItem(key,       tokens[1], latitutude, longitude,
                                                tokens[4], tokens[5], tokens[6],  zip,
                                                tokens[8], tokens[9], tokens[10]));
+
+                Log.d("Test", line);
+
             }
             br.close();
         } catch (IOException e) {

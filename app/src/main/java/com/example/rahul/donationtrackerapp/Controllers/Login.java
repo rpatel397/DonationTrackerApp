@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.util.Log;
 
 public class Login extends AppCompatActivity {
 
@@ -38,6 +39,9 @@ public class Login extends AppCompatActivity {
     }
 
     public void loginOnPressed(View view){
+        Log.d("LOGIN", "okay");
+
+
         if (sharedPreferences.contains(username.getText().toString() + "_1")) {
             if (password.getText().toString().equals(sharedPreferences.getString(username.getText().toString() + "_1", null))){
                 Toast.makeText(Login.this,"Login Successful",Toast.LENGTH_SHORT).show();
