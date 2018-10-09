@@ -19,7 +19,8 @@
         <activity android:name=".UserScreen" />
         <activity android:name=".Register" />
         <activity android:name=".Login" />
-        <activity android:name=".LocationList"></activity>
+        <activity android:name=".LocationList" />
+        <activity android:name=".LocationItemDetail"></activity>
     </application>
 
 </manifest>

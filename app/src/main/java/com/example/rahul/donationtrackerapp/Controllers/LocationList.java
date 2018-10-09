@@ -52,29 +52,21 @@ public class LocationList extends AppCompatActivity {
             holder.mItem = mValues.get(position);
             holder.mIdView.setText("" + mValues.get(position).getKey());
             holder.mContentView.setText(mValues.get(position).getName());
-            /*
+
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (mTwoPane) {
-                        Bundle arguments = new Bundle();
-                        arguments.putInt(DataItemDetailFragment.ARG_ITEM_ID, holder.mItem.getId());
-                        DataItemDetailFragment fragment = new DataItemDetailFragment();
-                        fragment.setArguments(arguments);
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.dataitem_detail_container, fragment)
-                                .commit();
-                    } else {
+
                         Context context = v.getContext();
-                        Intent intent = new Intent(context, DataItemDetailActivity.class);
-                        Log.d("MYAPP", "Switch to detailed view for item: " + holder.mItem.getId());
-                        intent.putExtra(DataItemDetailFragment.ARG_ITEM_ID, holder.mItem.getId());
+                        Intent intent = new Intent(context, LocationItemDetail.class);
+                        //Log.d("MYAPP", "Switch to detailed view for item: " + holder.mItem.getId());
+                        intent.putExtra(LocationItemDetailFragment.ARG_ITEM_ID, holder.mItem.getKey());
 
                         context.startActivity(intent);
-                    }
+
                 }
             });
-            */
+
         }
 
         @Override
