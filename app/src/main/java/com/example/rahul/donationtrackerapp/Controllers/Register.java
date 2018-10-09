@@ -28,7 +28,6 @@ public class Register extends AppCompatActivity  {
     private String account;
     private SharedPreferences sharedPreferences;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,11 +40,9 @@ public class Register extends AppCompatActivity  {
         accountType = findViewById(R.id.spinner_AccountType);
         sharedPreferences = getSharedPreferences("myprefs", Context.MODE_PRIVATE);
 
-
         ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, legalAccounts);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         accountType.setAdapter(adapter);
-
     }
 
 
@@ -73,9 +70,5 @@ public class Register extends AppCompatActivity  {
         Intent intent = new Intent(Register.this, WelcomeScreen.class);
         setContentView(R.layout.activity_welcome_screen);
         startActivity(intent);
-
     }
-
-
-
 }

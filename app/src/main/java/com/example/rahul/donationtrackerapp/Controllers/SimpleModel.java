@@ -22,8 +22,8 @@ public class SimpleModel {
     }
 
     public LocationItem findItemById(int id) {
-        for (LocationItem locat : items) {
-            if (locat.getKey() == id) return locat;
+        for (LocationItem location : items) {
+            if (location.getKey() == id) return location;
         }
         return null;
     }

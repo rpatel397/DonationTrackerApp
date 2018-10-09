@@ -19,6 +19,8 @@ import java.nio.charset.StandardCharsets;
 import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class WelcomeScreen extends AppCompatActivity {
+    public static String TAG = "Donation_Tracker";
+
 
     private SharedPreferences sharedPreferences;
     @Override
@@ -47,37 +49,29 @@ public class WelcomeScreen extends AppCompatActivity {
     }
 
     private void readSDFile() {
-        SimpleModel model = SimpleModel.INSTANCE;
+        SimpleModel model =  SimpleModel.INSTANCE;
 
         try {
-            //Open a stream on the raw file
             InputStream is = getResources().openRawResource(R.raw.locationdata);
-            //From here we probably should call a model method and pass the InputStream
-            //Wrap it in a BufferedReader so that we get the readLine() method
             BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
 
             String line;
-            br.readLine(); //get rid of header line
+            br.readLine();
             while ((line = br.readLine()) != null) {
                 String[] tokens = line.split(",");
 
                 int key = Integer.parseInt(tokens[0]);
-                double latitutude = Double.parseDouble(tokens[2]);
+                double latitude = Double.parseDouble(tokens[2]);
                 double longitude = Double.parseDouble(tokens[3]);
                 int zip = Integer.parseInt(tokens[7]);
 
-                model.addItem(new LocationItem(key,       tokens[1], latitutude, longitude,
+                model.addItem(new LocationItem(key,       tokens[1], latitude, longitude,
                                                tokens[4], tokens[5], tokens[6],  zip,
                                                tokens[8], tokens[9], tokens[10]));
-
-                Log.d("Test", line);
-
-            }
+                }
             br.close();
         } catch (IOException e) {
-
+            Log.e(WelcomeScreen.TAG, "error reading assets", e);
         }
-
     }
-
 }

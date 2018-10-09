@@ -29,21 +29,53 @@ public class LocationItem {
         this.type = type;
         this.phone = phone;
         this.website = website;
-     }
+    }
+
     public String toString() {
-            return name + " " + key;
-        }
-    public String getName() { return name; }
-    public double getLatitude() { return latitude; }
-    public double getLongitude() { return longitude; }
-    public String getAddress() { return address; }
-    public String getCity() { return city; }
-    public String getState() { return state; }
-    public int getZip() { return zip; }
-    public String getType() { return type; }
-    public String getPhone() { return phone; }
-    public String getWebsite() { return website; }
-    public int getKey() { return key; }
+        return name + " " + key;
+    }
 
+    public String getName() {
+        return name;
+    }
 
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public int getZip() {
+        return zip;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public int getKey() {
+        return key;
+    }
 }

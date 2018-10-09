@@ -26,7 +26,6 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         LoginButton();
         sharedPreferences = getSharedPreferences("myprefs", Context.MODE_PRIVATE);
-
     }
 
 
@@ -34,25 +33,19 @@ public class Login extends AppCompatActivity {
         username = findViewById(R.id.editText_username);
         password = findViewById(R.id.editText_password);
         login_button = findViewById(R.id.button_login);
-
-
     }
 
-    public void loginOnPressed(View view){
-        //auto login
-        username.setText("user");
-        password.setText("pass");
-
+    public void loginOnPressed(View view) {
         if (sharedPreferences.contains(username.getText().toString() + "_1")) {
-            if (password.getText().toString().equals(sharedPreferences.getString(username.getText().toString() + "_1", null))){
-                Toast.makeText(Login.this,"Login Successful",Toast.LENGTH_SHORT).show();
+            if (password.getText().toString().equals(sharedPreferences.getString(username.getText().toString() + "_1", null))) {
+                Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(Login.this, UserScreen.class));
             } else {
-                Toast.makeText(Login.this,"Login Failed",Toast.LENGTH_SHORT).show();
+                Toast.makeText(Login.this, "Login Failed", Toast.LENGTH_SHORT).show();
                 password.setText("");
             }
-        }else {
-            Toast.makeText(Login.this,"Login Failed",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(Login.this, "Login Failed", Toast.LENGTH_SHORT).show();
             password.setText("");
         }
     }
@@ -61,6 +54,5 @@ public class Login extends AppCompatActivity {
         Intent intent = new Intent(Login.this, WelcomeScreen.class);
         setContentView(R.layout.activity_welcome_screen);
         startActivity(intent);
-
     }
 }

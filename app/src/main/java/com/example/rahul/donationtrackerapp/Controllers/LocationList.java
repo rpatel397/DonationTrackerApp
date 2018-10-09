@@ -28,7 +28,6 @@ public class LocationList extends AppCompatActivity {
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
         recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(SimpleModel.INSTANCE.getItems()));
-        Log.d("Test", "Read simple model");
     }
 
     public class SimpleItemRecyclerViewAdapter
@@ -57,12 +56,10 @@ public class LocationList extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
-                        Context context = v.getContext();
-                        Intent intent = new Intent(context, LocationItemDetail.class);
-                        //Log.d("MYAPP", "Switch to detailed view for item: " + holder.mItem.getId());
-                        intent.putExtra(LocationItemDetailFragment.ARG_ITEM_ID, holder.mItem.getKey());
-
-                        context.startActivity(intent);
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, LocationItemDetail.class);
+                    intent.putExtra(LocationItemDetailFragment.ARG_ITEM_ID, holder.mItem.getKey());
+                    context.startActivity(intent);
 
                 }
             });
