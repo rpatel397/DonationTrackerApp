@@ -21,15 +21,17 @@ import static android.provider.AlarmClock.EXTRA_MESSAGE;
 public class WelcomeScreen extends AppCompatActivity {
     public static String TAG = "Donation_Tracker";
 
-
     private SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if(!sharedPreferences.contains("user_1")){
+            readSDFile();
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_screen);
 
         sharedPreferences = getSharedPreferences("myprefs", Context.MODE_PRIVATE);
-        readSDFile();
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("user_1", "pass");
@@ -70,6 +72,7 @@ public class WelcomeScreen extends AppCompatActivity {
                                                tokens[8], tokens[9], tokens[10]));
                 }
             br.close();
+
         } catch (IOException e) {
             Log.e(WelcomeScreen.TAG, "error reading assets", e);
         }
