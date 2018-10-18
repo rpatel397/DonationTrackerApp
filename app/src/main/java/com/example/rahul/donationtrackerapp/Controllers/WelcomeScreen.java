@@ -8,15 +8,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+
+import com.example.rahul.donationtrackerapp.Controllers.Model.SimpleModel;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-
-import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class WelcomeScreen extends AppCompatActivity {
     public static String TAG = "Donation_Tracker";
