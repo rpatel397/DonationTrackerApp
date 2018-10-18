@@ -7,22 +7,22 @@ public class SimpleModel {
 
     public static final SimpleModel INSTANCE = new SimpleModel();
 
-    private List<LocationItem> items;
+    private List<Location> items;
 
     private SimpleModel() {
         items = new ArrayList<>();
     }
 
-    public void addItem(LocationItem item) {
+    public void addItem(Location item) {
         items.add(item);
     }
 
-    public List<LocationItem> getItems() {
+    public List<Location> getItems() {
         return items;
     }
 
-    public LocationItem findItemById(int id) {
-        for (LocationItem location : items) {
+    public Location findItemById(int id) {
+        for (Location location : items) {
             if (location.getKey() == id) return location;
         }
         return null;

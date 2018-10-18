@@ -13,7 +13,7 @@ public class LocationItemDetailFragment extends Fragment {
 
     public static final String ARG_ITEM_ID = "item_id";
 
-    private LocationItem mItem;
+    private Location mItem;
 
     public LocationItemDetailFragment() {
     }
