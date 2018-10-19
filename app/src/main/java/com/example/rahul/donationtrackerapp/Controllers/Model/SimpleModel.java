@@ -1,4 +1,6 @@
-package com.example.rahul.donationtrackerapp.Controllers;
+package com.example.rahul.donationtrackerapp.Controllers.Model;
+
+import com.example.rahul.donationtrackerapp.Controllers.Location;
 
 import java.util.ArrayList;
 import java.util.List;
