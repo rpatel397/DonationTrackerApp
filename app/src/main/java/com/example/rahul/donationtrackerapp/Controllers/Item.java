@@ -31,13 +31,13 @@ public class Item {
         }
     }
 
-    public Item(double value, Timestamp timeStamp, String shortDescription, String fullDescription, String comments, Category category) {
+    public Item(double value, Timestamp timeStamp, String shortDescription, String fullDescription, String comments, String category) {
         this.value = value;
         this.timeStamp = timeStamp;
         this.shortDescription = shortDescription;
         this.fullDescription = fullDescription;
         this.comments = comments;
-        this.category = category;
+        this.category = Category.valueOf(category);
     }
 
     public double getValue() {
