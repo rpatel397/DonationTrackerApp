@@ -1,4 +1,4 @@
-package Model;
+package com.example.rahul.donationtrackerapp.Model;
 
 import com.example.rahul.donationtrackerapp.Controllers.Location;
 
@@ -9,22 +9,30 @@ public class SimpleModel {
 
     public static final SimpleModel INSTANCE = new SimpleModel();
 
-    private List<Location> items;
+    private List<Location> locations;
+
+
+
+
+
+
 
     private SimpleModel() {
-        items = new ArrayList<>();
+        locations = new ArrayList<>();
     }
 
+
+
     public void addItem(Location item) {
-        items.add(item);
+        locations.add(item);
     }
 
     public List<Location> getItems() {
-        return items;
+        return locations;
     }
 
     public Location findItemById(int id) {
-        for (Location location : items) {
+        for (Location location : locations) {
             if (location.getKey() == id) return location;
         }
         return null;

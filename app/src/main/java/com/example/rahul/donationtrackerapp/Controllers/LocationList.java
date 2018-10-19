@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import Model.SimpleModel;
+import com.example.rahul.donationtrackerapp.Model.SimpleModel;
 
 import java.util.List;
 

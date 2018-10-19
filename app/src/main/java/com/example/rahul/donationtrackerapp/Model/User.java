@@ -1,4 +1,4 @@
-package Model;
+package com.example.rahul.donationtrackerapp.Model;
 
 
 import java.util.Arrays;
