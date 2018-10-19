@@ -1,6 +1,5 @@
-package com.example.rahul.donationtrackerapp.Controllers;
+package Model;
 
-import android.widget.EditText;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,14 +10,13 @@ public class User {
     private String name;
     private String id;
     private String password;
-    private String accountType;
+    private enum accountType;
     private boolean accountState;
 
-    public User(String name, String id, String password, String accountType, boolean accountState) {
+    public User(String name, String id, String password, boolean accountState) {
         this.name = name;
         this.id = id;
         this.password = password;
-        this.accountType = accountType;
         this.accountState = accountState;
     }
 }
