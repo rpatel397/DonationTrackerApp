@@ -49,11 +49,9 @@ public class Register extends AppCompatActivity  {
     public void registerOnPressed(View view){
         if (name.getText().toString().equals("") || password.getText().toString().equals("") || id.getText().toString().equals("")) {
             Toast.makeText(Register.this, "Complete all fields", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(Register.this, Register.class));
         }else {
             if (sharedPreferences.contains(id.getText().toString() + "_0")) {
                 Toast.makeText(Register.this, "User already registered", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(Register.this, Register.class));
             } else {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString(id.getText().toString() + "_0", name.getText().toString());
