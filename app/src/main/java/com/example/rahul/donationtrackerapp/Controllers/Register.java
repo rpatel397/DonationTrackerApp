@@ -46,24 +46,17 @@ public class Register extends AppCompatActivity  {
         String userID = idField.getText().toString();
         if (nameField.getText().toString().equals("") || passwordField.getText().toString().equals("") || idField.getText().toString().equals("")) {
             Toast.makeText(Register.this, "Complete all fields", Toast.LENGTH_SHORT).show();
-            Intent restartRegister = new Intent(Register.this, Register.class);
-            restartRegister.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            overridePendingTransition(0, 0);
-            finish();
-            startActivity(restartRegister);
-            overridePendingTransition(0, 0);
+            passwordField.setText("");
         }else {
             userDatabase.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot snapshot) {
                     if (snapshot.exists()) {
                         Toast.makeText(Register.this, "User already registered", Toast.LENGTH_SHORT).show();
-                        Intent restartRegister = new Intent(Register.this, Register.class);
-                        restartRegister.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        overridePendingTransition(0, 0);
-                        finish();
-                        startActivity(restartRegister);
-                        overridePendingTransition(0, 0);
+                        nameField.setText("");
+                        passwordField.setText("");
+                        idField.setText("");
+                        accountTypeSpinner.setSelection(0);
                     } else {
                         createNewUser();
                         Toast.makeText(Register.this, "User registered, logging in...", Toast.LENGTH_SHORT).show();
@@ -81,6 +74,16 @@ public class Register extends AppCompatActivity  {
         Intent intent = new Intent(Register.this, WelcomeScreen.class);
         finish();
         startActivity(intent);
+
+        //Useful code to restart activity without animation
+        /*
+            Intent restartRegister = new Intent(Register.this, Register.class);
+            restartRegister.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            overridePendingTransition(0, 0);
+            finish();
+            startActivity(restartRegister);
+            overridePendingTransition(0, 0);
+        */
     }
 
     public void createNewUser(){
