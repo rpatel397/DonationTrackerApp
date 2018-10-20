@@ -71,7 +71,7 @@ public class Register extends AppCompatActivity  {
 
             users.put(id.toString(), new User(name, id, password, true, type));
 
-
+            //test
             /*
             if (sharedPreferences.contains(id.getText().toString() + "_0")) {
                 Toast.makeText(Register.this, "User already registered", Toast.LENGTH_SHORT).show();
