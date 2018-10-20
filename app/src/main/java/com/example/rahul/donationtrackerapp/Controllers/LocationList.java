@@ -1,3 +1,26 @@
+/*
+Query locationQuery = locationDatabase.orderByChild("key");
+        locationQuery.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int x = 0;
+                for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
+                    Location location = snapshot.getValue(Location.class);
+                    mLocationList.add(location);
+                    System.out.println("adding new location" + x + " " + mLocationList.size() + location.getCity());
+                    x++;
+
+                }
+                //RecyclerViewAdapter recycler = new RecyclerViewAdapter(mLocationList);
+                //recyclerView.setA
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError){ }
+        });
+ */
+
 package com.example.rahul.donationtrackerapp.Controllers;
 
 import android.content.Context;
@@ -11,6 +34,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.rahul.donationtrackerapp.Model.Location;
 import com.example.rahul.donationtrackerapp.Model.SimpleModel;
 
 import java.util.List;

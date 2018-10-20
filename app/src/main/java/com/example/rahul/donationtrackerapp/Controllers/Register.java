@@ -86,7 +86,7 @@ public class Register extends AppCompatActivity  {
         */
     }
 
-    public void createNewUser(){
+    private void createNewUser(){
         String name = nameField.getText().toString();
         String password = passwordField.getText().toString();
         String userID = idField.getText().toString();
