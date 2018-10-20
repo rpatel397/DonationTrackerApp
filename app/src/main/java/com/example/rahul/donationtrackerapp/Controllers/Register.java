@@ -12,8 +12,11 @@ import android.widget.Toast;
 
 import com.example.rahul.donationtrackerapp.Model.User;
 import com.example.rahul.donationtrackerapp.Model.*;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Register extends AppCompatActivity  {
 
@@ -40,28 +43,53 @@ public class Register extends AppCompatActivity  {
 
 
     public void registerOnPressed(View view){
-        String name = nameField.getText().toString();
-        String password = passwordField.getText().toString();
         String userID = idField.getText().toString();
-        accountType type = (accountType) accountTypeSpinner.getSelectedItem();
-
-        if (name.equals("") || password.equals("") || userID.equals("")) {
+        if (nameField.getText().toString().equals("") || passwordField.getText().toString().equals("") || idField.getText().toString().equals("")) {
             Toast.makeText(Register.this, "Complete all fields", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(Register.this, Register.class));
+            Intent restartRegister = new Intent(Register.this, Register.class);
+            restartRegister.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            overridePendingTransition(0, 0);
+            finish();
+            startActivity(restartRegister);
+            overridePendingTransition(0, 0);
         }else {
-            if (userDatabase.child(userID) != null){
-                Toast.makeText(Register.this, "User already registered", Toast.LENGTH_SHORT).show();
-                finish();
-                startActivity(new Intent(Register.this, Register.class));
-            }
-            User user = new User(name, userID, password, true, type);
-            userDatabase.child(userID).setValue(user);
+            userDatabase.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot snapshot) {
+                    if (snapshot.exists()) {
+                        Toast.makeText(Register.this, "User already registered", Toast.LENGTH_SHORT).show();
+                        Intent restartRegister = new Intent(Register.this, Register.class);
+                        restartRegister.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        overridePendingTransition(0, 0);
+                        finish();
+                        startActivity(restartRegister);
+                        overridePendingTransition(0, 0);
+                    } else {
+                        createNewUser();
+                        Toast.makeText(Register.this, "User registered, logging in...", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(Register.this, UserScreen.class));
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError test){
+                }
+            });
         }
     }
 
     public void onCancelPressed(View view) {
         Intent intent = new Intent(Register.this, WelcomeScreen.class);
-        setContentView(R.layout.activity_welcome_screen);
+        finish();
         startActivity(intent);
+    }
+
+    public void createNewUser(){
+        String name = nameField.getText().toString();
+        String password = passwordField.getText().toString();
+        String userID = idField.getText().toString();
+        accountType type = (accountType) accountTypeSpinner.getSelectedItem();
+
+        User user = new User(name, userID, password, true, type);
+        userDatabase.child(userID).setValue(user);
     }
 }
