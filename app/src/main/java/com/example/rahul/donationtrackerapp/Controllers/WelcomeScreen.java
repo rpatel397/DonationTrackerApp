@@ -9,7 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import Model.SimpleModel;
+import com.example.rahul.donationtrackerapp.Model.SimpleModel;
 
 import java.io.BufferedReader;
 import java.io.IOException;

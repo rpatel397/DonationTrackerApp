@@ -1,4 +1,4 @@
-package Model;
+package com.example.rahul.donationtrackerapp.Model;
 
 import com.example.rahul.donationtrackerapp.Controllers.Location;
 

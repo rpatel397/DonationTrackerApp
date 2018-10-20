@@ -12,6 +12,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.util.Log;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class Login extends AppCompatActivity {
 
     private EditText username;

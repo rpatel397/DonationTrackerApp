@@ -13,44 +13,66 @@ import android.widget.Toast;
 import android.content.SharedPreferences;
 import android.content.Context;
 
+import com.example.rahul.donationtrackerapp.Model.User;
+import com.example.rahul.donationtrackerapp.Model.*;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Register extends AppCompatActivity  {
 
     public static List<String> legalAccounts = Arrays.asList("USER", "Location Employee", "Admin", "Manager");
 
-    private EditText name;
-    private EditText id;
-    private EditText password;
+    private EditText nameField, idField, passwordField;
     private Button register_button;
-    private Spinner accountType;
+    private Spinner accountTypeSpinner;
     private String account;
     private SharedPreferences sharedPreferences;
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference ref = database.getReference("users");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        name = findViewById(R.id.editText_Name);
-        password = findViewById(R.id.editText_Password);
-        id =  findViewById(R.id.editText_ID);
+        nameField = findViewById(R.id.editText_Name);
+        passwordField = findViewById(R.id.editText_Password);
+        idField =  findViewById(R.id.editText_ID);
         register_button = findViewById(R.id.button_registrationLogin);
-        accountType = findViewById(R.id.spinner_AccountType);
+        accountTypeSpinner = findViewById(R.id.spinner_AccountType);
+
         sharedPreferences = getSharedPreferences("myprefs", Context.MODE_PRIVATE);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, legalAccounts);
+        ArrayAdapter<accountType> adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, accountType.values());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        accountType.setAdapter(adapter);
+        accountTypeSpinner.setAdapter(adapter);
     }
 
 
     public void registerOnPressed(View view){
-        if (name.getText().toString().equals("") || password.getText().toString().equals("") || id.getText().toString().equals("")) {
+        String name = nameField.getText().toString();
+        String password = passwordField.getText().toString();
+        String id = idField.getText().toString();
+        accountType type = (accountType) accountTypeSpinner.getSelectedItem();
+
+        if (name.equals("") || password.equals("") || id.equals("")) {
             Toast.makeText(Register.this, "Complete all fields", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(Register.this, Register.class));
         }else {
+
+            DatabaseReference usersRef = ref.child("users");
+            Map<String, User> users = new HashMap<>();
+
+            users.put(id.toString(), new User(name, id, password, true, type));
+
+
+            /*
             if (sharedPreferences.contains(id.getText().toString() + "_0")) {
                 Toast.makeText(Register.this, "User already registered", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(Register.this, Register.class));
@@ -63,6 +85,7 @@ public class Register extends AppCompatActivity  {
                 Toast.makeText(Register.this,"Registration Successful",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(Register.this, UserScreen.class));
             }
+            */
         }
     }
 
