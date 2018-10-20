@@ -16,11 +16,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        android:theme = "@style/AppTheme.CustomTheme"   />
         <activity android:name=".UserScreen" />
         <activity android:name=".Register" />
         <activity android:name=".Login" />
         <activity android:name=".LocationList" />
-        <activity android:name=".LocationItemDetail"></activity>
+        <activity android:name=".LocationItemDetail" />
+        <activity android:name=".LocationInventory" />
+        <activity android:name=".UpdateInventory" />
+        <activity android:name=".InventoryItemDetail"></activity>
     </application>
 
 </manifest>
