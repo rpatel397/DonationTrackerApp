@@ -7,6 +7,9 @@ public class User {
     private accountType type;
     private boolean accountState;
 
+    public User(){
+    }
+
     public User(String name, String id, String password, boolean accountState, accountType type) {
         this.name = name;
         this.id = id;
@@ -15,6 +18,10 @@ public class User {
         this.type = type;
     }
 
-    //Add getters and setters for user
+    public String getName(){ return name; }
+    public String getId(){ return id; }
+    public String getPassword(){ return password;}
+    public accountType getType() { return type;}
+    public boolean getAccountState() { return accountState; }
 
 }
