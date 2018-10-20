@@ -10,7 +10,7 @@ public class User {
     private String name;
     private String id;
     private String password;
-    private enum accountType;
+    private enum accountType{};
     private boolean accountState;
 
     public User(String name, String id, String password, boolean accountState) {
