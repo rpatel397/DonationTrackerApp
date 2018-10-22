@@ -150,6 +150,7 @@
         android:layout_marginBottom="120dp"
         android:layout_marginEnd="18dp"
         android:layout_marginTop="120dp"
+        android:onClick="cancelOnPressed"
         android:text="Cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

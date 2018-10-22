@@ -22,7 +22,7 @@
         <activity android:name=".Login" />
         <activity android:name=".LocationList" />
         <activity android:name=".LocationItemDetail" />
-        <activity android:name=".LocationInventory" />
+        <activity android:name=".InventoryScreen" />
         <activity android:name=".UpdateInventory" />
         <activity android:name=".InventoryItemDetail"></activity>
     </application>

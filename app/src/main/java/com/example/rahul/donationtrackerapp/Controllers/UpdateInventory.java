@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
 import java.sql.Timestamp;
 
 import com.example.rahul.donationtrackerapp.Model.Item;
@@ -53,6 +54,14 @@ public class UpdateInventory extends AppCompatActivity {
     }
 
     public void onDonate(View view) {
+        if (value.getText().toString().equals("") || briefDetails.getText().toString().equals("") || fullDescription.getText().equals("")){
+            Toast.makeText(UpdateInventory.this, "Please complete all fields", Toast.LENGTH_SHORT).show();
+            value.setText("");
+            briefDetails.setText("");
+            fullDescription.setText("");
+            return;
+        }
+
         Double Mvalue = Double.parseDouble(value.getText().toString());
         String brief_description = briefDetails.getText().toString();
         String full_description = fullDescription.getText().toString();
@@ -66,7 +75,7 @@ public class UpdateInventory extends AppCompatActivity {
         String key = itemDatabase.push().getKey().toString();
         itemDatabase.child(key).setValue(item);
 
-        Intent intent = new Intent(UpdateInventory.this, LocationInventory.class);
+        Intent intent = new Intent(UpdateInventory.this, InventoryScreen.class);
         finish();
         startActivity(intent);
     }
