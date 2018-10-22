@@ -50,4 +50,8 @@ public class User {
        }
         return null;
     }
+
+    public boolean checkPassword(String password){
+        return (this.passwordHash(password).equals(this.password));
+    }
 }

@@ -29,6 +29,10 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         LoginButton();
+
+        //auto login for convience
+        usernameID.setText("Bailey");
+        passwordField.setText("Bailey");
     }
 
     public void LoginButton() {
@@ -51,6 +55,7 @@ public class Login extends AppCompatActivity {
                         String password = snapshot.child("password").getValue().toString();
                         String hashPassword = User.passwordHash(passwordField.getText().toString());
                         Toast.makeText(Login.this, password, Toast.LENGTH_SHORT).show();
+
                         if (snapshot.child("accountState").getValue().equals(false)){
                             Toast.makeText(Login.this, "Account is Locked. Contact Admin", Toast.LENGTH_SHORT).show();
                         }

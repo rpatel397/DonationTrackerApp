@@ -7,25 +7,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.rahul.donationtrackerapp.Model.Model;
 import com.example.rahul.donationtrackerapp.Model.Location;
-import com.example.rahul.donationtrackerapp.Model.SimpleModel;
 
 public class LocationItemDetailFragment extends Fragment {
 
     public static final String ARG_ITEM_ID = "item_id";
+    private Location location;
 
-    private Location mItem;
-
-    public LocationItemDetailFragment() {
-    }
+    public LocationItemDetailFragment() { }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if (getArguments().containsKey(ARG_ITEM_ID)) {
             int item_id = getArguments().getInt(ARG_ITEM_ID);
-            mItem = SimpleModel.INSTANCE.findItemById(item_id);
+            location = Model.findLocationByKey(item_id);
         }
     }
 
@@ -33,13 +30,13 @@ public class LocationItemDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.locationitem_detail, container, false);
-        if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.name)).setText(mItem.getName());
-            ((TextView) rootView.findViewById(R.id.type)).setText("Type: " + mItem.getType());
-            ((TextView) rootView.findViewById(R.id.longitude)).setText("Longitude: " + String.valueOf(mItem.getLongitude()));
-            ((TextView) rootView.findViewById(R.id.latitude)).setText("Latitude: " +String.valueOf(mItem.getLatitude()));
-            ((TextView) rootView.findViewById(R.id.address)).setText("Address: " +mItem.getAddress());
-            ((TextView) rootView.findViewById(R.id.phone)).setText("Phone Number: " +mItem.getPhone());
+        if (location != null) {
+            ((TextView) rootView.findViewById(R.id.name)).setText(location.getName());
+            ((TextView) rootView.findViewById(R.id.type)).setText("Type: " + location.getType());
+            ((TextView) rootView.findViewById(R.id.longitude)).setText("Longitude: " + String.valueOf(location.getLongitude()));
+            ((TextView) rootView.findViewById(R.id.latitude)).setText("Latitude: " +String.valueOf(location.getLatitude()));
+            ((TextView) rootView.findViewById(R.id.address)).setText("Address: " +location.getAddress());
+            ((TextView) rootView.findViewById(R.id.phone)).setText("Phone Number: " +location.getPhone());
         }
         return rootView;
     }

@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.rahul.donationtrackerapp.Model.Location;
-import com.example.rahul.donationtrackerapp.Model.SimpleModel;
 import com.example.rahul.donationtrackerapp.Model.locationType;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,7 +34,7 @@ public class WelcomeScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         if(startUp){
-            readSDFile();
+            updateLocationDatabase();
         }
 
         super.onCreate(savedInstanceState);
@@ -60,9 +59,7 @@ public class WelcomeScreen extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void readSDFile() {
-        SimpleModel model = SimpleModel.INSTANCE;
-
+    private void updateLocationDatabase() {
         try {
             InputStream is = getResources().openRawResource(R.raw.locationdata);
             BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
@@ -77,10 +74,6 @@ public class WelcomeScreen extends AppCompatActivity {
                 double longitude = Double.parseDouble(tokens[3]);
                 int zip = Integer.parseInt(tokens[7]);
                 locationType type = locationType.valueOf(tokens[8].replaceAll("\\s+","").toUpperCase());
-
-                model.addItem(new Location(key,       tokens[1], latitude, longitude,
-                                           tokens[4], tokens[5], tokens[6],  zip,
-                                           type     , tokens[9], tokens[10]));
 
                 locationDatabase.child(String.valueOf(key)).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
