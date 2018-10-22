@@ -9,23 +9,28 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+import java.sql.Timestamp;
+
+import com.example.rahul.donationtrackerapp.Model.Item;
+import com.example.rahul.donationtrackerapp.Model.donationType;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class UpdateInventory extends AppCompatActivity {
 
-
     private EditText value;
     private EditText briefDetails;
     private EditText fullDescription;
-    private Spinner category;
-    private Spinner location;
+    private Spinner categorySpinner;
+    private Spinner locationSpinner;
     private Button donate_button;
     private Button cancel_button;
-    private static List<String> legalCategories = Arrays.asList("Clothing", "Hats", "Kitchen", "Electronics", "Household", "other");
     private static List<String> legalLocations = Arrays.asList("AFD Station 4","Boys & Girls Club W.W. Woolfolk",
             "Pathway Upper Room Christian Ministries", "Pavilion of Hope", "D&D Convenience Store", "Keep North Fulton Beautiful");
+    private DatabaseReference itemDatabase = FirebaseDatabase.getInstance().getReference("items");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,54 +38,44 @@ public class UpdateInventory extends AppCompatActivity {
         value = findViewById(R.id.editText_value);
         briefDetails = findViewById(R.id.editText_BriefDetails);
         fullDescription =  findViewById(R.id.editText_fullDescription);
-        category = findViewById(R.id.spinner_Category);
-        location = findViewById(R.id.spinner_Location);
+        categorySpinner = findViewById(R.id.spinner_Category);
+        locationSpinner = findViewById(R.id.spinner_Location);
         donate_button = findViewById(R.id.button_Donate);
         cancel_button = findViewById(R.id.button_Cancel);
 
-
-
-        ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, legalCategories);
+        ArrayAdapter<donationType> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, donationType.values());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        category.setAdapter(adapter);
+        categorySpinner.setAdapter(adapter);
 
         ArrayAdapter<String> adapter2 = new ArrayAdapter(this,android.R.layout.simple_spinner_item, legalLocations);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        location.setAdapter(adapter2);
-
+        locationSpinner.setAdapter(adapter2);
     }
 
-    public void onDontate(View view){
-            double Mvalue;
-            try {
-                Mvalue = Double.parseDouble(value.getText().toString());
-                if (Mvalue < 0) {
-                    throw new Exception();
-                }
-            } catch (Exception e) {
-                Toast.makeText(this, "Enter valid value", Toast.LENGTH_SHORT).show();
-            }
+    public void onDonate(View view) {
+        Double Mvalue = Double.parseDouble(value.getText().toString());
+        String brief_description = briefDetails.getText().toString();
+        String full_description = fullDescription.getText().toString();
+        donationType CATEGORY = (donationType) categorySpinner.getSelectedItem();
+        String LOCATION = locationSpinner.getSelectedItem().toString();
+        String comments = "";
+        Timestamp timeStamp = new Timestamp(System.currentTimeMillis());
 
-            String brief_description = briefDetails.getText().toString();
-            String full_description = fullDescription.getText().toString();
 
-            String CATEGORY = category.getSelectedItem().toString();
-            String LOCATION = location.getSelectedItem().toString();
-
-            //Inventory inventory = new Inventory();
-            //inventory.addItem(value, timeStamp, brief_description, full_description, CATEGORY, LOCATION);
-
+        Item item = new Item(Mvalue, timeStamp, brief_description, full_description, comments, CATEGORY, LOCATION);
+        String key = itemDatabase.push().getKey().toString();
+        itemDatabase.child(key).setValue(item);
 
         Intent intent = new Intent(UpdateInventory.this, LocationInventory.class);
+        finish();
         startActivity(intent);
-
-        }
-
-
-
-
-
-
     }
+
+    public void cancelOnPressed(View view) {
+        Intent backToWelcome = new Intent(UpdateInventory.this, UserScreen.class);
+        finish();
+        startActivity(backToWelcome);
+    }
+}
 
 

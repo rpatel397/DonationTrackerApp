@@ -6,6 +6,7 @@ import java.util.List;
 public class Model {
 
     public static List<Location> locations = new ArrayList<>();
+    public static List<Item> items = new ArrayList<>();
 
     public static Location findLocationByKey(int id) {
         for (Location location : locations) {

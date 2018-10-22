@@ -29,22 +29,13 @@ public class WelcomeScreen extends AppCompatActivity {
     public static boolean startUp = true;
     private DatabaseReference locationDatabase = FirebaseDatabase.getInstance().getReference("locations");
 
-    private SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        super.onCreate(savedInstanceState);
         if(startUp){
             updateLocationDatabase();
         }
-
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_screen);
-
-        sharedPreferences = getSharedPreferences("myprefs", Context.MODE_PRIVATE);
-
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("user_1", "pass");
-        editor.commit();
     }
 
     public void loginOnPressed(View view) {
@@ -70,28 +61,20 @@ public class WelcomeScreen extends AppCompatActivity {
                 final String[] tokens = line.split(",");
 
                 int key = Integer.parseInt(tokens[0]);
-                double latitude = Double.parseDouble(tokens[2]);
-                double longitude = Double.parseDouble(tokens[3]);
-                int zip = Integer.parseInt(tokens[7]);
-                locationType type = locationType.valueOf(tokens[8].replaceAll("\\s+","").toUpperCase());
-
                 locationDatabase.child(String.valueOf(key)).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot snapshot) {
                         if (snapshot.exists()) {
                             //location already exists we do nothing.
+                            //could change this to update the information
                         } else {
                             addNewLocation(tokens);
-
                         }
                     }
                     @Override
                     public void onCancelled(DatabaseError test){
                     }
                 });
-
-
-
             }
             br.close();
             startUp = false;
@@ -112,6 +95,5 @@ public class WelcomeScreen extends AppCompatActivity {
                                           tokens[4], tokens[5], tokens[6],  zip,
                                           type     , tokens[9], tokens[10]);
         locationDatabase.child(String.valueOf(key)).setValue(location);
-
     }
 }

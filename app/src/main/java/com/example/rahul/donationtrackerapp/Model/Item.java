@@ -1,4 +1,4 @@
-package com.example.rahul.donationtrackerapp.Controllers;
+package com.example.rahul.donationtrackerapp.Model;
 
 import java.sql.Timestamp;
 
@@ -8,7 +8,8 @@ public class Item {
     private String shortDescription;
     private String fullDescription;
     private String comments;
-    private Category category;
+    private String location;
+    private donationType category;
 
     private enum Category {
         CLOTHING("Clothing", 0), HAT("Hat", 1), KITCHEN("Kitchen", 2), ELECTRONICS("Electronics", 3), HOUSEHOLD("Household", 4), OTHER("Other", 5);
@@ -31,13 +32,16 @@ public class Item {
         }
     }
 
-    public Item(double value, Timestamp timeStamp, String shortDescription, String fullDescription, String comments, String category) {
+    public Item(){ }
+
+    public Item(double value, Timestamp timeStamp, String shortDescription, String fullDescription, String comments, donationType category, String location) {
         this.value = value;
         this.timeStamp = timeStamp;
         this.shortDescription = shortDescription;
         this.fullDescription = fullDescription;
         this.comments = comments;
-        this.category = Category.valueOf(category);
+        this.category = category;
+        this.location = location;
     }
 
     public double getValue() {
@@ -80,11 +84,11 @@ public class Item {
         this.comments = comments;
     }
 
-    public Category getCategory() {
+    public donationType getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(donationType category) {
         this.category = category;
     }
 }

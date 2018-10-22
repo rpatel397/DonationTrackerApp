@@ -32,10 +32,4 @@ public class LocationInventory extends AppCompatActivity {
         Intent intent = new Intent(LocationInventory.this, UpdateInventory.class);
         startActivity(intent);
     }
-
-
-
-
-
-
 }
