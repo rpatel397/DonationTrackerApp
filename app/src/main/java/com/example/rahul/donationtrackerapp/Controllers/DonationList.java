@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.rahul.donationtrackerapp.Model.Item;
 import com.example.rahul.donationtrackerapp.Model.Location;
 import com.example.rahul.donationtrackerapp.Model.Model;
 import com.google.firebase.database.DataSnapshot;
@@ -23,59 +24,50 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
-public class LocationList extends AppCompatActivity {
-
-    //private DatabaseReference locationDatabase = FirebaseDatabase.getInstance().getReference("locations");
+public class DonationList extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_location_list);
-        View recyclerView = findViewById(R.id.locationitem_list);
+        setContentView(R.layout.activity_donation_list);
+        View recyclerView = findViewById(R.id.donationitem_list);
         assert recyclerView != null;
-        setupRecyclerView((RecyclerView) recyclerView);
-    }
 
-    private void restartActivity(){
-        Intent restartList = new Intent(LocationList.this, LocationList.class);
-        restartList.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        overridePendingTransition(0, 0);
-        finish();
-        startActivity(restartList);
-        overridePendingTransition(0, 0);
+        setupRecyclerView((RecyclerView) recyclerView);
+
+        Log.e("Creating donation list",  " " + Model.INSTANCE.getDonations().size());
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(Model.INSTANCE.getLocations()));
+        recyclerView.setAdapter(new DonationList.SimpleItemRecyclerViewAdapter(Model.INSTANCE.getDonations()));
     }
 
     public class SimpleItemRecyclerViewAdapter
-            extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
+            extends RecyclerView.Adapter<DonationList.SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        private final List<Location> mValues;
+        private final List<Item> mValues;
 
-        public SimpleItemRecyclerViewAdapter(List<Location> items) {
+        public SimpleItemRecyclerViewAdapter(List<Item> items) {
             mValues = items;
         }
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.locationitem_list_content, parent, false);
+                    .inflate(R.layout.donationitem_list_content, parent, false);
             return new ViewHolder(view);
         }
 
         @Override
-        public void onBindViewHolder(final ViewHolder holder, int position) {
+        public void onBindViewHolder(final DonationList.SimpleItemRecyclerViewAdapter.ViewHolder holder, int position) {
             holder.mItem = mValues.get(position);
-            holder.mIdView.setText("" + mValues.get(position).getKey());
-            holder.mContentView.setText(mValues.get(position).getName());
+            holder.mContentView.setText(mValues.get(position).getShortDescription());
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Context context = v.getContext();
                     Intent intent = new Intent(context, LocationItemDetail.class);
-                    intent.putExtra(LocationItemDetailFragment.ARG_ITEM_ID, holder.mItem.getKey());
+                    intent.putExtra(LocationItemDetailFragment.ARG_ITEM_ID, holder.mItem.getTimeStamp());
                     context.startActivity(intent);
                 }
             });
@@ -88,14 +80,12 @@ public class LocationList extends AppCompatActivity {
 
         public class ViewHolder extends RecyclerView.ViewHolder {
             public final View mView;
-            public final TextView mIdView;
             public final TextView mContentView;
-            public Location mItem;
+            public Item mItem;
 
             public ViewHolder(View view) {
                 super(view);
                 mView = view;
-                mIdView = view.findViewById(R.id.key);
                 mContentView = view.findViewById(R.id.content);
             }
 
@@ -105,4 +95,8 @@ public class LocationList extends AppCompatActivity {
             }
         }
     }
+
+
+
+
 }

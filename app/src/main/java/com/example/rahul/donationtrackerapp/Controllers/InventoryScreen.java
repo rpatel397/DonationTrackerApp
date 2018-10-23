@@ -29,4 +29,11 @@ public class InventoryScreen extends AppCompatActivity {
         Intent intent = new Intent(InventoryScreen.this, UpdateInventory.class);
         startActivity(intent);
     }
+
+    public void onItemList(View view) {
+        Intent intent = new Intent(InventoryScreen.this, DonationList.class);
+        startActivity(intent);
+    }
+
+
 }

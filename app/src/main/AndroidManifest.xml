@@ -16,7 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        android:theme = "@style/AppTheme.CustomTheme"   />
+        android:theme = "@style/AppTheme.CustomTheme" />
         <activity android:name=".UserScreen" />
         <activity android:name=".Register" />
         <activity android:name=".Login" />
@@ -24,7 +24,10 @@
         <activity android:name=".LocationItemDetail" />
         <activity android:name=".InventoryScreen" />
         <activity android:name=".UpdateInventory" />
-        <activity android:name=".InventoryItemDetail"></activity>
+        <activity android:name=".DonationItemDetail" />
+        <activity
+            android:name=".DonationList"
+            android:label="@string/title_activity_donation_list"></activity>
     </application>
 
 </manifest>

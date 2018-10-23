@@ -13,6 +13,7 @@ import android.widget.Toast;
 import java.sql.Timestamp;
 
 import com.example.rahul.donationtrackerapp.Model.Item;
+import com.example.rahul.donationtrackerapp.Model.Model;
 import com.example.rahul.donationtrackerapp.Model.donationType;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -69,19 +70,19 @@ public class UpdateInventory extends AppCompatActivity {
         String LOCATION = locationSpinner.getSelectedItem().toString();
         String comments = "";
         Timestamp timeStamp = new Timestamp(System.currentTimeMillis());
-
+        String key = itemDatabase.push().getKey();
 
         Item item = new Item(Mvalue, timeStamp, brief_description, full_description, comments, CATEGORY, LOCATION);
-        String key = itemDatabase.push().getKey().toString();
         itemDatabase.child(key).setValue(item);
+        PullFromDatabase.updateDonations();
 
-        Intent intent = new Intent(UpdateInventory.this, InventoryScreen.class);
-        finish();
-        startActivity(intent);
+        //Intent intent = new Intent(UpdateInventory.this, InventoryScreen.class);
+        // finish();
+        // startActivity(intent);
     }
 
     public void cancelOnPressed(View view) {
-        Intent backToWelcome = new Intent(UpdateInventory.this, UserScreen.class);
+        Intent backToWelcome = new Intent(UpdateInventory.this, DonationList.class);
         finish();
         startActivity(backToWelcome);
     }

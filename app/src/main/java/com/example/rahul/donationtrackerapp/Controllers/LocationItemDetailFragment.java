@@ -22,7 +22,7 @@ public class LocationItemDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments().containsKey(ARG_ITEM_ID)) {
             int item_id = getArguments().getInt(ARG_ITEM_ID);
-            location = Model.findLocationByKey(item_id);
+            location = Model.INSTANCE.findLocationByKey(item_id);
         }
     }
 

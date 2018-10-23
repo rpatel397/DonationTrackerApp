@@ -37,7 +37,7 @@ public class UserScreen extends AppCompatActivity {
 
     public void inventoryOnPressed(View view) {
         Intent intent = new Intent(this, InventoryScreen.class);
-        //setContentView(R.layout.activity_location_inventory);
+        //Intent intent = new Intent(this, DonationList.class);
         startActivity(intent);
     }
 

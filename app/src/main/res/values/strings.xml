@@ -11,6 +11,10 @@
     <string name="attempt_text">Attempt</string>
     <string name="button_login_text">Login</string>
     <string name="screen_page_text">Welcome  to the second page</string>
+    <string name="title_activity_donation_list">DonationList</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

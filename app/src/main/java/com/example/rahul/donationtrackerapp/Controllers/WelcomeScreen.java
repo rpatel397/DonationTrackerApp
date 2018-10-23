@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.rahul.donationtrackerapp.Model.Location;
+import com.example.rahul.donationtrackerapp.Model.Model;
 import com.example.rahul.donationtrackerapp.Model.locationType;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,6 +35,8 @@ public class WelcomeScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         if(startUp){
             updateLocationDatabase();
+            PullFromDatabase.updateLocations();
+            PullFromDatabase.updateDonations();
         }
         setContentView(R.layout.activity_welcome_screen);
     }
