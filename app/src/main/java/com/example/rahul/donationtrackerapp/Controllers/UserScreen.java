@@ -8,7 +8,6 @@ import android.widget.Button;
 
 public class UserScreen extends AppCompatActivity {
 
-
     private Button logOut_button;
     private Button location_button;
     private Button inventory_button;
@@ -40,6 +39,4 @@ public class UserScreen extends AppCompatActivity {
         //Intent intent = new Intent(this, DonationList.class);
         startActivity(intent);
     }
-
-
 }

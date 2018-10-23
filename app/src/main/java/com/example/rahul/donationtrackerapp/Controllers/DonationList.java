@@ -67,7 +67,7 @@ public class DonationList extends AppCompatActivity {
                 public void onClick(View v) {
                     Context context = v.getContext();
                     Intent intent = new Intent(context, LocationItemDetail.class);
-                    intent.putExtra(LocationItemDetailFragment.ARG_ITEM_ID, holder.mItem.getTimeStamp());
+                    intent.putExtra(LocationItemDetailFragment.ARG_ITEM_ID, holder.mItem.getKey());
                     context.startActivity(intent);
                 }
             });

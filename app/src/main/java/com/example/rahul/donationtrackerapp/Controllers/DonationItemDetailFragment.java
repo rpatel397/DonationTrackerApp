@@ -34,6 +34,7 @@ public class DonationItemDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.donationitem_detail, container, false);
         if (donation != null) {
             ((TextView) rootView.findViewById(R.id.name)).setText(donation.getShortDescription());
+            ((TextView) rootView.findViewById(R.id.value)).setText(donation.getValue() + " ");
         }
         return rootView;
     }

@@ -77,8 +77,8 @@ public class UpdateInventory extends AppCompatActivity {
         PullFromDatabase.updateDonations();
 
         //Intent intent = new Intent(UpdateInventory.this, InventoryScreen.class);
-        // finish();
-        // startActivity(intent);
+        //finish();
+        //startActivity(intent);
     }
 
     public void cancelOnPressed(View view) {
