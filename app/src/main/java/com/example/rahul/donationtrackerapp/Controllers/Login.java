@@ -30,9 +30,11 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         LoginButton();
 
+        /*
         //auto login for convience
         usernameID.setText("Bailey");
         passwordField.setText("Bailey");
+        */
     }
 
     public void LoginButton() {

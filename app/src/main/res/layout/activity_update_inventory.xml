@@ -9,13 +9,12 @@
 
     <TextView
         android:id="@+id/textView_value"
-        android:layout_width="39dp"
+        android:layout_width="wrap_content"
         android:layout_height="19dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Value"
-        android:textAlignment="textStart"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -26,8 +25,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Brief Details"
-        android:textAlignment="textStart"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_value" />
 
@@ -38,8 +36,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Full Description"
-        android:textAlignment="textStart"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_BriefDetails" />
 
@@ -50,7 +47,6 @@
         android:layout_marginStart="8dp"
         android:ems="10"
         android:inputType="number|numberDecimal"
-        android:text="6564564"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textSize="14sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView_value"
@@ -63,7 +59,6 @@
         android:layout_marginStart="8dp"
         android:ems="10"
         android:inputType="text"
-        android:text="testing"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView_BriefDetails"
         app:layout_constraintStart_toEndOf="@+id/textView_BriefDetails" />
@@ -85,7 +80,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Category"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_fullDescription" />
 
@@ -104,7 +99,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Location"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_Category"
@@ -112,10 +107,11 @@
 
     <Spinner
         android:id="@+id/spinner_Location"
-        android:layout_width="wrap_content"
+        android:layout_width="255dp"
         android:layout_height="19dp"
+        android:layout_marginStart="8dp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView_Location"
-        app:layout_constraintStart_toStartOf="@+id/spinner_Category" />
+        app:layout_constraintStart_toEndOf="@+id/textView_Location" />
 
     <TextView
         android:id="@+id/textView9"
@@ -136,8 +132,8 @@
         android:id="@+id/button_Donate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginStart="24dp"
         android:onClick="onDonate"
         android:text="Donate"
         app:layout_constraintBottom_toTopOf="@+id/barrier"
@@ -147,10 +143,11 @@
         android:id="@+id/button_Cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="24dp"
         android:onClick="cancelOnPressed"
         android:text="Cancel"
-        app:layout_constraintBottom_toBottomOf="@+id/button_Donate"
+        app:layout_constraintBottom_toTopOf="@+id/barrier"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <android.support.constraint.Guideline

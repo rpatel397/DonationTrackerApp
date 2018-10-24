@@ -34,7 +34,11 @@ public class DonationItemDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.donationitem_detail, container, false);
         if (donation != null) {
             ((TextView) rootView.findViewById(R.id.name)).setText(donation.getShortDescription());
-            ((TextView) rootView.findViewById(R.id.value)).setText(donation.getValue() + " ");
+            ((TextView) rootView.findViewById(R.id.value)).setText(String.valueOf("$" + donation.getValue()));
+            ((TextView) rootView.findViewById(R.id.category)).setText(donation.getCategory().toString());
+            ((TextView) rootView.findViewById(R.id.location)).setText(donation.getLocation());
+            ((TextView) rootView.findViewById(R.id.description)).setText(donation.getFullDescription());
+            ((TextView) rootView.findViewById(R.id.timestamp)).setText(donation.getTimeStamp());
         }
         return rootView;
     }

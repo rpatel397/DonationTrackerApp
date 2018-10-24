@@ -39,7 +39,6 @@ public class Model {
         return donations;
     }
 
-
     public Location findLocationByKey(int id) {
         for (Location location : locations) {
             if (location.getKey() == id) return location;
@@ -49,9 +48,6 @@ public class Model {
 
     public Item findDonationByKey(int id) {
         for (Item item : donations) {
-            System.out.println(id + " compared to " +  item.getKey());
-
-
             if (item.getKey() == id) return item;
         }
         return null;

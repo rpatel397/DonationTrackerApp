@@ -88,6 +88,9 @@ public class DonationList extends AppCompatActivity {
     }
 
 
-
-
+    public void addItemOnPressed(View view) {
+        Intent intent = new Intent(this, UpdateInventory.class);
+        setContentView(R.layout.activity_update_inventory);
+        startActivity(intent);
+    }
 }

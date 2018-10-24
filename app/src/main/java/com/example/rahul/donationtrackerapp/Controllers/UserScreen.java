@@ -30,13 +30,11 @@ public class UserScreen extends AppCompatActivity {
 
     public void locationListOnPressed(View view) {
         Intent intent = new Intent(this, LocationList.class);
-        setContentView(R.layout.activity_location_list);
         startActivity(intent);
     }
 
     public void inventoryOnPressed(View view) {
         Intent intent = new Intent(this, InventoryScreen.class);
-        //Intent intent = new Intent(this, DonationList.class);
         startActivity(intent);
     }
 }

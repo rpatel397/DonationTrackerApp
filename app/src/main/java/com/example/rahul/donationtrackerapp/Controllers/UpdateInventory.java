@@ -37,6 +37,7 @@ public class UpdateInventory extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_inventory);
+
         value = findViewById(R.id.editText_value);
         briefDetails = findViewById(R.id.editText_BriefDetails);
         fullDescription =  findViewById(R.id.editText_fullDescription);
@@ -76,13 +77,13 @@ public class UpdateInventory extends AppCompatActivity {
         itemDatabase.child(key).setValue(item);
         PullFromDatabase.updateDonations();
 
-        //Intent intent = new Intent(UpdateInventory.this, InventoryScreen.class);
-        //finish();
-        //startActivity(intent);
+        Intent intent = new Intent(UpdateInventory.this, InventoryScreen.class);
+        finish();
+        startActivity(intent);
     }
 
     public void cancelOnPressed(View view) {
-        Intent backToWelcome = new Intent(UpdateInventory.this, DonationList.class);
+        Intent backToWelcome = new Intent(UpdateInventory.this, InventoryScreen.class);
         finish();
         startActivity(backToWelcome);
     }

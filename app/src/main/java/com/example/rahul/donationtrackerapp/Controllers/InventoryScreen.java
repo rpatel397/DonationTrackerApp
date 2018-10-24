@@ -12,17 +12,9 @@ public class InventoryScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_location_inventory);
+        setContentView(R.layout.activity_inventory_screen);
 
         addItem_button = findViewById(R.id.button_addItem);
-
-
-        //ArrayAdapter<Item> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
-
-        //ListView listView = (ListView)findViewById(R.id.List_Item);
-        //listView.setAdapter(adapter);
-
-
     }
 
     public void onaddItemPressed(View view) {

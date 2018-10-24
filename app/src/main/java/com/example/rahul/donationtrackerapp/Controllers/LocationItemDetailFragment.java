@@ -32,11 +32,11 @@ public class LocationItemDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.locationitem_detail, container, false);
         if (location != null) {
             ((TextView) rootView.findViewById(R.id.name)).setText(location.getName());
-            ((TextView) rootView.findViewById(R.id.type)).setText("Type: " + location.getType());
-            ((TextView) rootView.findViewById(R.id.longitude)).setText("Longitude: " + String.valueOf(location.getLongitude()));
-            ((TextView) rootView.findViewById(R.id.latitude)).setText("Latitude: " +String.valueOf(location.getLatitude()));
-            ((TextView) rootView.findViewById(R.id.address)).setText("Address: " +location.getAddress());
-            ((TextView) rootView.findViewById(R.id.phone)).setText("Phone Number: " +location.getPhone());
+            ((TextView) rootView.findViewById(R.id.type)).setText(location.getType().toString());
+            ((TextView) rootView.findViewById(R.id.longitude)).setText(String.valueOf(location.getLongitude()));
+            ((TextView) rootView.findViewById(R.id.latitude)).setText(String.valueOf(location.getLatitude()));
+            ((TextView) rootView.findViewById(R.id.address)).setText(location.getAddress());
+            ((TextView) rootView.findViewById(R.id.phone)).setText(location.getPhone());
         }
         return rootView;
     }

@@ -72,10 +72,10 @@ public class Item {
     }
 
 
-    public String getLocations(){
+    public String getLocation(){
         return location;
     }
-    public void setLocations(String location){
-        this.location = location;
+    public void setLocation(String location){this.location = location;
     }
+
 }

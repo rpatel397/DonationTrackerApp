@@ -49,7 +49,6 @@ public class PullFromDatabase {
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
                     Item item = snapshot.getValue(Item.class);
                     model.add(item);
-                    System.out.println("Adding testing" + item.getValue());
                 }
             }
 
@@ -58,7 +57,5 @@ public class PullFromDatabase {
                 Log.e("onCancelled", "Error while reading from database", databaseError.toException());
             }
         });
-
-        System.out.println("INVENTORY SIZE" +  Model.INSTANCE.getDonations().size());
     }
 }
