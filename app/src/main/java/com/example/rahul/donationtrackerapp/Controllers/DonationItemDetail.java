@@ -16,13 +16,11 @@ public class DonationItemDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donation_item_detail);
-        Log.e("Creating detail screen",   " ");
 
         if (savedInstanceState == null) {
             Bundle arguments = new Bundle();
             arguments.putInt(DonationItemDetailFragment.ARG_ITEM_ID,
-                    getIntent().getIntExtra(
-                            DonationItemDetailFragment.ARG_ITEM_ID, 1000));
+                    getIntent().getIntExtra(DonationItemDetailFragment.ARG_ITEM_ID, 1000));
             DonationItemDetailFragment fragment = new DonationItemDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()

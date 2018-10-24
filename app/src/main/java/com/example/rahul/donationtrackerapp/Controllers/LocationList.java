@@ -25,8 +25,6 @@ import java.util.List;
 
 public class LocationList extends AppCompatActivity {
 
-    //private DatabaseReference locationDatabase = FirebaseDatabase.getInstance().getReference("locations");
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -49,8 +49,7 @@ public class Model {
 
     public Item findDonationByKey(int id) {
         for (Item item : donations) {
-            System.out.println(id + " compared to " + " item.getKey()");
-
+            System.out.println(id + " compared to " +  item.getKey());
 
 
             if (item.getKey() == id) return item;

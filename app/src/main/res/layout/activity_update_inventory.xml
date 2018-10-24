@@ -9,83 +9,81 @@
 
     <TextView
         android:id="@+id/textView_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="39dp"
+        android:layout_height="19dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:text="Value"
+        android:textAlignment="textStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintEnd_toStartOf="@+id/editText_value"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <TextView
         android:id="@+id/textView_BriefDetails"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="19dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="8dp"
         android:text="Brief Details"
+        android:textAlignment="textStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintEnd_toStartOf="@+id/editText_BriefDetails"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_value" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_value" />
 
     <TextView
         android:id="@+id/textView_fullDescription"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:text="Full Description"
+        android:textAlignment="textStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintStart_toStartOf="@+id/editText_fullDescription"
-        app:layout_constraintTop_toBottomOf="@+id/editText_BriefDetails" />
-
-    <EditText
-        android:id="@+id/editText_value"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="265dp"
-        android:ems="10"
-        android:inputType="number|numberDecimal"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView_value"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView_value"
-        app:layout_constraintTop_toBottomOf="@+id/textView_value" />
-
-    <EditText
-        android:id="@+id/editText_BriefDetails"
-        android:layout_width="0dp"
-        android:layout_height="35dp"
-        android:layout_marginEnd="23dp"
-        android:ems="10"
-        android:inputType="text"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:layout_constraintBottom_toBottomOf="@+id/textView_BriefDetails"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView_BriefDetails"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_BriefDetails" />
 
     <EditText
+        android:id="@+id/editText_value"
+        android:layout_width="275dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:inputType="number|numberDecimal"
+        android:text="6564564"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="14sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView_value"
+        app:layout_constraintStart_toEndOf="@+id/textView_value" />
+
+    <EditText
+        android:id="@+id/editText_BriefDetails"
+        android:layout_width="239dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="testing"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView_BriefDetails"
+        app:layout_constraintStart_toEndOf="@+id/textView_BriefDetails" />
+
+    <EditText
         android:id="@+id/editText_fullDescription"
-        android:layout_width="0dp"
+        android:layout_width="323dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textMultiLine"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView_fullDescription"
         app:layout_constraintTop_toBottomOf="@+id/textView_fullDescription" />
 
     <TextView
         android:id="@+id/textView_Category"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="16dp"
         android:text="Category"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintStart_toStartOf="parent"
@@ -94,39 +92,43 @@
     <Spinner
         android:id="@+id/spinner_Category"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="19dp"
         android:layout_marginStart="8dp"
-        app:layout_constraintStart_toEndOf="@+id/textView_Category"
-        app:layout_constraintTop_toTopOf="@+id/textView_Category" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView_Category"
+        app:layout_constraintStart_toEndOf="@+id/textView_Category" />
 
     <TextView
         android:id="@+id/textView_Location"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="19dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="Location"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintBaseline_toBaselineOf="@+id/spinner_Location"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_Category"
+        app:layout_constraintVertical_bias="0.014" />
 
     <Spinner
         android:id="@+id/spinner_Location"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="31dp"
-        app:layout_constraintStart_toEndOf="@+id/textView_Location"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_Category" />
+        android:layout_height="19dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView_Location"
+        app:layout_constraintStart_toStartOf="@+id/spinner_Category" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Enter Item Information"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -134,26 +136,34 @@
         android:id="@+id/button_Donate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="118dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="117dp"
         android:onClick="onDonate"
         android:text="Donate"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_Category" />
+        app:layout_constraintBottom_toTopOf="@+id/barrier"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button_Cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="120dp"
-        android:layout_marginEnd="18dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginEnd="16dp"
         android:onClick="cancelOnPressed"
         android:text="Cancel"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_Category" />
+        app:layout_constraintBottom_toBottomOf="@+id/button_Donate"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <android.support.constraint.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top" />
 
 </android.support.constraint.ConstraintLayout>

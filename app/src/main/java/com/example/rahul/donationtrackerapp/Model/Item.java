@@ -25,7 +25,7 @@ public class Item {
         this.location = location;
     }
 
-    public double getKey() {
+    public int getKey() {
         return key;
     }
 

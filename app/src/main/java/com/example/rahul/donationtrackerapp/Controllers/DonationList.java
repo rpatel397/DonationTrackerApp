@@ -6,21 +6,14 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.rahul.donationtrackerapp.Model.Item;
-import com.example.rahul.donationtrackerapp.Model.Location;
 import com.example.rahul.donationtrackerapp.Model.Model;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
+
 
 import java.util.List;
 
@@ -34,16 +27,14 @@ public class DonationList extends AppCompatActivity {
         assert recyclerView != null;
 
         setupRecyclerView((RecyclerView) recyclerView);
-
-        Log.e("Creating donation list",  " " + Model.INSTANCE.getDonations().size());
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new DonationList.SimpleItemRecyclerViewAdapter(Model.INSTANCE.getDonations()));
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(Model.INSTANCE.getDonations()));
     }
 
     public class SimpleItemRecyclerViewAdapter
-            extends RecyclerView.Adapter<DonationList.SimpleItemRecyclerViewAdapter.ViewHolder> {
+            extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
         private final List<Item> mValues;
 
@@ -66,8 +57,8 @@ public class DonationList extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Context context = v.getContext();
-                    Intent intent = new Intent(context, LocationItemDetail.class);
-                    intent.putExtra(LocationItemDetailFragment.ARG_ITEM_ID, holder.mItem.getKey());
+                    Intent intent = new Intent(context, DonationItemDetail.class);
+                    intent.putExtra(DonationItemDetailFragment.ARG_ITEM_ID, holder.mItem.getKey());
                     context.startActivity(intent);
                 }
             });
