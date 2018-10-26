@@ -26,7 +26,7 @@ public class Model {
 
     public void clearDonations(){
         donations = backupDonations;
-        donations = new ArrayList<>();
+        donations.clear();
     }
 
     public void add(Location location){
