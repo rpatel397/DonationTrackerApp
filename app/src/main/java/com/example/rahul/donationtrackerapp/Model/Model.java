@@ -86,7 +86,12 @@ public class Model {
                 if (it.getShortDescription().toLowerCase().contains(name.toLowerCase())) {
                     queryList.add(it);
                 }
-            } else {
+            } else if (name.equalsIgnoreCase("")) {
+                if (it.getLocation().equals(location)) {
+                    queryList.add(it);
+                }
+
+            }else {
                 if (it.getShortDescription().toLowerCase().contains(name.toLowerCase())
                         /*&& it.getLocation().equals(location)*/) {
                     queryList.add(it);
