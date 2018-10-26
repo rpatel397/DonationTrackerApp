@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.rahul.donationtrackerapp.Model.Model;
+
 public class InventoryScreen extends AppCompatActivity {
     private Button addItem_button;
 
@@ -23,6 +25,7 @@ public class InventoryScreen extends AppCompatActivity {
     }
 
     public void onItemList(View view) {
+        Model.INSTANCE.setFullDonations();
         Intent intent = new Intent(InventoryScreen.this, DonationList.class);
         startActivity(intent);
     }

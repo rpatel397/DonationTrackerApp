@@ -26,7 +26,7 @@ import java.util.List;
 
 public class Search extends AppCompatActivity {
 
-    private static List<String> legalLocations = Arrays.asList("AFD Station 4","Boys & Girls Club W.W. Woolfolk",
+    private static List<String> legalLocations = Arrays.asList("Any","AFD Station 4","Boys & Girls Club W.W. Woolfolk",
             "Pathway Upper Room Christian Ministries", "Pavilion of Hope", "D&D Convenience Store", "Keep North Fulton Beautiful");
 
     private EditText name;
@@ -58,19 +58,21 @@ public class Search extends AppCompatActivity {
     }
 
     public void onsearchNamePressed(View view) {
-        Intent intent = new Intent(Search.this, UpdateInventory.class);
+        Intent intent = new Intent(Search.this, DonationList.class);
+        Model.INSTANCE.setFullDonations();
         if (Model.INSTANCE.queryItemsBasedOnName(location.getSelectedItem().toString(),
                 name.getText().toString()) > 0){
             startActivity(intent);
         } else {
-            Toast.makeText(Search.this, "There are no items with" + category.getSelectedItem().toString()
+            Toast.makeText(Search.this, "There are no items with" + name.getText().toString()
                     + " in the inventory.", Toast.LENGTH_SHORT).show();
         }
     }
     public void onsearchCategoryPressed(View view) {
-        Intent intent = new Intent(Search.this, UpdateInventory.class);
+        Model.INSTANCE.setFullDonations();
+        Intent intent = new Intent(Search.this, DonationList.class);
         if (Model.INSTANCE.queryItemsBasedOnCategory(location.getSelectedItem().toString(),
-                donationType.valueOf(category.getSelectedItem().toString())) > 0) {
+                category.getSelectedItem().toString()) > 0) {
             startActivity(intent);
         } else {
             Toast.makeText(Search.this, "There are no items with" + category.getSelectedItem().toString()

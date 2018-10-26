@@ -25,6 +25,7 @@ public class Model {
     }
 
     public void clearDonations(){
+        donations = backupDonations;
         donations = new ArrayList<>();
     }
 
@@ -53,32 +54,33 @@ public class Model {
     }
 
     public Item findDonationByKey(int id) {
+        donations = backupDonations;
         for (Item item : donations) {
             if (item.getKey() == id) return item;
         }
         return null;
     }
-
-    public int queryItemsBasedOnCategory(String location, donationType category) {
+    public int queryItemsBasedOnCategory(String location, String category) {
         queryList.clear();
-        donations = queryList;
+
         for (Item it : donations) {
             if (location.equals("Any")) {
-                if (it.getCategory() == category) {
+                if (it.getCategory().getCategory().equalsIgnoreCase(category)) {
                     queryList.add(it);
                 }
             } else {
-                if (it.getCategory() == category && it.getLocation().equals(location)) {
+                if (it.getCategory().getCategory().equalsIgnoreCase(category) && it.getLocation().equals(location)) {
                     queryList.add(it);
+
                 }
             }
 
         }
+        donations = queryList;
         return queryList.size();
     }
     public int queryItemsBasedOnName(String location, String name) {
         queryList.clear();
-        donations = queryList;
         for (Item it : donations) {
             if (location.equals("Any")) {
                 if (it.getShortDescription().toLowerCase().contains(name.toLowerCase())) {
@@ -86,12 +88,17 @@ public class Model {
                 }
             } else {
                 if (it.getShortDescription().toLowerCase().contains(name.toLowerCase())
-                        && it.getLocation().equals(location)) {
+                        /*&& it.getLocation().equals(location)*/) {
                     queryList.add(it);
                 }
             }
 
         }
+        donations = queryList;
         return queryList.size();
+    }
+
+    public void setFullDonations() {
+        donations = backupDonations;
     }
 }
