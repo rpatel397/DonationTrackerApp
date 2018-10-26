@@ -27,5 +27,10 @@ public class InventoryScreen extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void OnSearch (View view) {
+        Intent intent = new Intent(InventoryScreen.this, Search.class);
+        startActivity(intent);
+    }
+
 
 }
