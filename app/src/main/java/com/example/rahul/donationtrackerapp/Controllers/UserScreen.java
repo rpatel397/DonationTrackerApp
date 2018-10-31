@@ -11,6 +11,7 @@ public class UserScreen extends AppCompatActivity {
     private Button logOut_button;
     private Button location_button;
     private Button inventory_button;
+    private Button map_button;
 
 
     @Override
@@ -20,6 +21,7 @@ public class UserScreen extends AppCompatActivity {
         logOut_button= findViewById(R.id.logoutButton);
         location_button = findViewById(R.id.locationButton);
         inventory_button = findViewById(R.id.button_Inventory);
+        map_button = findViewById(R.id.mapButton);
     }
 
     public void logoutOnPressed(View view) {
@@ -35,6 +37,11 @@ public class UserScreen extends AppCompatActivity {
 
     public void inventoryOnPressed(View view) {
         Intent intent = new Intent(this, InventoryScreen.class);
+        startActivity(intent);
+    }
+
+    public void mapOnPressed(View view) {
+        Intent intent = new Intent(this, Map.class);
         startActivity(intent);
     }
 }

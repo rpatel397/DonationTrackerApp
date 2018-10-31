@@ -47,6 +47,7 @@ public class LocationList extends AppCompatActivity {
         recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(Model.INSTANCE.getLocations()));
     }
 
+
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
