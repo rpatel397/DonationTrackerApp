@@ -38,6 +38,7 @@ public class PullFromDatabase {
         });
     }
 
+
     public static void updateDonations(){
         Query donationQuery = itemDatabase;
         donationQuery.addValueEventListener(new ValueEventListener() {
