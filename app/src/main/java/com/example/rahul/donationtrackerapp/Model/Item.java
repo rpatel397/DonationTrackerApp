@@ -12,6 +12,9 @@ public class Item {
     private String location;
     private donationType category;
 
+    /**
+     * No-arg constructor for donated items NECESSARY
+     */
     public Item(){ }
 
     public Item(double value, Timestamp timeStamp, String shortDescription, String fullDescription, String comments, donationType category, String location) {
