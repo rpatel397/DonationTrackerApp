@@ -8,7 +8,7 @@ public class Item {
     private String timeStamp;
     private String shortDescription;
     private String fullDescription;
-    private String comments;
+    //private String comments;
     private String location;
     private donationType category;
 
@@ -20,7 +20,7 @@ public class Item {
         this.timeStamp = timeStamp.toString();
         this.shortDescription = shortDescription;
         this.fullDescription = fullDescription;
-        this.comments = comments;
+        //this.comments = comments;
         this.category = category;
         this.location = location;
     }
@@ -39,30 +39,30 @@ public class Item {
     public String getTimeStamp() {
         return timeStamp;
     }
-    public void setTimeStamp(String timeStamp) {
-        this.timeStamp = timeStamp;
-    }
+//    public void setTimeStamp(String timeStamp) {
+//        this.timeStamp = timeStamp;
+//    }
 
     public String getShortDescription() {
         return shortDescription;
     }
-    public void setShortDescription(String shortDescription) {
-        this.shortDescription = shortDescription;
-    }
+//    public void setShortDescription(String shortDescription) {
+//        this.shortDescription = shortDescription;
+//    }
 
     public String getFullDescription() {
         return fullDescription;
     }
-    public void setFullDescription(String fullDescription) {
-        this.fullDescription = fullDescription;
-    }
+//    public void setFullDescription(String fullDescription) {
+//        this.fullDescription = fullDescription;
+//    }
 
-    public String getComments() {
-        return comments;
-    }
-    public void setComments(String comments) {
-        this.comments = comments;
-    }
+//    public String getComments() {
+//        return comments;
+//    }
+//    public void setComments(String comments) {
+//        this.comments = comments;
+//    }
 
     public donationType getCategory() {
         return category;
