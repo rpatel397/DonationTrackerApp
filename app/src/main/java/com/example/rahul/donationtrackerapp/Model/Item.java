@@ -57,13 +57,10 @@ public class Item {
         return value;
     }
 
-    /**
-     * Sets the value of the item
-     * @param value - double - the value we want the item to have
-     */
-    public void setValue(double value) {
-        this.value = value;
-    }
+
+//    public void setValue(double value) {
+//        this.value = value;
+//    }
 
     /**
      * Gets the time the item was donated
@@ -113,13 +110,10 @@ public class Item {
         return category;
     }
 
-    /**
-     * Sets the category of the donation
-     * @param category - donationType - the desired category of the item
-     */
-    public void setCategory(donationType category) {
-        this.category = category;
-    }
+
+//    public void setCategory(donationType category) {
+//        this.category = category;
+//    }
 
     /**
      * Gets the location of the donation
@@ -129,11 +123,8 @@ public class Item {
         return location;
     }
 
-    /**
-     * Sets the location the item was donated
-     * @param location - Location - the desired location of the donation
-     */
-    public void setLocation(String location){this.location = location;
-    }
+
+//    public void setLocation(String location){this.location = location;
+//    }
 
 }

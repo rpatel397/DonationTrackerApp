@@ -13,7 +13,7 @@ public class Location {
     private double longitude;
     private String address;
     //private String city;
-    private String state;
+    //private String state;
     //private int zip;
     private locationType type;
     private String phone;
@@ -34,7 +34,7 @@ public class Location {
      * @param longitude - double - the longitude of the location
      * @param address - String - the written address of the location
      * @param city - String - the city the location is in (currently not used)
-     * @param state - String - the state the location is in
+     * @param state - String - the state the location is in (currently not used)
      * @param zip - int - the zip code of the location (currently not used)
      * @param type - locationType - the category of location
      * @param phone - String - the location's phone number
@@ -49,7 +49,7 @@ public class Location {
         this.longitude = longitude;
         this.address = address;
         //this.city = city;
-        this.state = state;
+        //this.state = state;
         //this.zip = zip;
         this.type = type;
         this.phone = phone;
@@ -86,11 +86,7 @@ public class Location {
     public String getAddress() { return address; }
     //public String getCity() { return city; }
 
-    /**
-     * Gets the state the location is in
-     * @return String - the location's home state
-     */
-    public String getState() { return state; }
+    //public String getState() { return state; }
     //public int getZip() {  return zip; }
 
     /**
