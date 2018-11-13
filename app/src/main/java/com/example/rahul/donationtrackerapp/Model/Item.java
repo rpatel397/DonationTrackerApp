@@ -2,6 +2,9 @@ package com.example.rahul.donationtrackerapp.Model;
 
 import java.sql.Timestamp;
 
+/**
+ * Class to represent a donation item
+ */
 public class Item {
     private int key;
     private double value;
@@ -17,6 +20,16 @@ public class Item {
      */
     public Item(){ }
 
+    /**
+     * The constructor for item mainly used with a bunch of parameters
+     * @param value double - the cost of the donation item
+     * @param timeStamp - Timestamp - the time the donation was made
+     * @param shortDescription - String - small description of the donation
+     * @param fullDescription - String - large, in-depth description of the donation
+     * @param comments - String - comments about the donation (currently not in use)
+     * @param category - donationType - type of donation made aka category of ite
+     * @param location - Location - where the donation was made
+     */
     public Item(double value, Timestamp timeStamp, String shortDescription, String fullDescription, String comments, donationType category, String location) {
         this.key = timeStamp.hashCode();
         this.value = value;
@@ -28,17 +41,34 @@ public class Item {
         this.location = location;
     }
 
+    /**
+     * Gets the key of the item
+     * @return int - the item's key
+     */
     public int getKey() {
         return key;
     }
 
+    /**
+     * Gets the value of the item
+     * @return double - the cost of the item
+     */
     public double getValue() {
         return value;
     }
+
+    /**
+     * Sets the value of the item
+     * @param value - double - the value we want the item to have
+     */
     public void setValue(double value) {
         this.value = value;
     }
 
+    /**
+     * Gets the time the item was donated
+     * @return String - The time of the item's donation
+     */
     public String getTimeStamp() {
         return timeStamp;
     }
@@ -46,6 +76,10 @@ public class Item {
 //        this.timeStamp = timeStamp;
 //    }
 
+    /**
+     * Gets a small description of the item
+     * @return String - the small description of the item
+     */
     public String getShortDescription() {
         return shortDescription;
     }
@@ -53,6 +87,10 @@ public class Item {
 //        this.shortDescription = shortDescription;
 //    }
 
+    /**
+     * Gets the large description of the item
+     * @return String - the complete description of the item
+     */
     public String getFullDescription() {
         return fullDescription;
     }
@@ -67,17 +105,34 @@ public class Item {
 //        this.comments = comments;
 //    }
 
+    /**
+     * Gets the category of the donation
+     * @return donationType - the type of donation made
+     */
     public donationType getCategory() {
         return category;
     }
+
+    /**
+     * Sets the category of the donation
+     * @param category - donationType - the desired category of the item
+     */
     public void setCategory(donationType category) {
         this.category = category;
     }
 
-
+    /**
+     * Gets the location of the donation
+     * @return Location - where the item was donated
+     */
     public String getLocation(){
         return location;
     }
+
+    /**
+     * Sets the location the item was donated
+     * @param location - Location - the desired location of the donation
+     */
     public void setLocation(String location){this.location = location;
     }
 
