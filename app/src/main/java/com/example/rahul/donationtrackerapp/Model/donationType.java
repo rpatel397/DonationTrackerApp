@@ -13,20 +13,18 @@ public enum donationType {
     HOUSEHOLD("Household", 4),
     OTHER("Other", 5);
 
-    private final int index;
+    //private final int index;
     private final String category;
+
     donationType(String category, int index) {
         this.category = category;
-        this.index = index;
+        //this.index = index;
     }
 
-    /**
-     * Getting the index of a donation
-     * @return int- the index of the donation
-     */
-    public int getIndex(){
-        return index;
-    }
+
+//    public int getIndex(){
+//        return index;
+//    }
 
     /**
      * Get the category of the donation
