@@ -40,8 +40,9 @@ public class Login extends AppCompatActivity {
 
 
     /**
-     * Logs the user into app. If the account is locked
-     * the user is notified
+     * Logs the user into app. If the account is locked the user is notified. An incorrect password
+     * attempt increments the loginAttempts and potentially locks the account. Upon successful
+     * login the user is granted access into the app.
      * @param view current app view
      */
     public void loginOnPressed(View view) {
@@ -123,8 +124,7 @@ public class Login extends AppCompatActivity {
     }
 
     /**
-     * Cancels login attempt. Takes user back to
-     * WelcomeScreen
+     * Cancels login attempt. Takes user back to WelcomeScreen
      * @param view current app view
      */
     public void cancelOnPressed(View view) {
