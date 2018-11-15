@@ -71,11 +71,11 @@ public class Search extends AppCompatActivity {
     public void onSearchNamePressed(View view) {
         Intent intent = new Intent(Search.this, DonationList.class);
         Model.INSTANCE.setFullDonations();
-        if (Model.INSTANCE.queryItemsBasedOnName(location.getSelectedItem().toString(),
-                name.getText().toString()) > 0){
+        if (Model.INSTANCE.queryItemsBasedOnName(location.getSelectedItem()+"",
+                name.getText()+"") > 0){
             startActivity(intent);
         } else {
-            Toast.makeText(Search.this, "There are no items with" + name.getText().toString()
+            Toast.makeText(Search.this, "There are no items with" + name.getText()+""
                     + " in the inventory.", Toast.LENGTH_SHORT).show();
         }
     }
@@ -87,12 +87,12 @@ public class Search extends AppCompatActivity {
     public void onSearchCategoryPressed(View view) {
         Model.INSTANCE.setFullDonations();
         Intent intent = new Intent(Search.this, DonationList.class);
-        if (Model.INSTANCE.queryItemsBasedOnCategory(location.getSelectedItem().toString(),
-                category.getSelectedItem().toString()) > 0) {
+        if (Model.INSTANCE.queryItemsBasedOnCategory(location.getSelectedItem()+"",
+                category.getSelectedItem()+"") > 0) {
             startActivity(intent);
         } else {
             Toast.makeText(Search.this,
-                    "There are no items with" + category.getSelectedItem().toString()
+                    "There are no items with" + category.getSelectedItem()+""
                     + " in the inventory.", Toast.LENGTH_SHORT).show();
         }
 

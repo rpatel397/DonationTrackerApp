@@ -55,10 +55,10 @@ public class Register extends AppCompatActivity  {
      * the UI
      */
     public void registerOnPressed(View view){
-        String userID = idField.getText().toString();
-        if ("".equals(nameField.getText().toString()) ||
-                passwordField.getText().toString().equals("")
-                || idField.getText().toString().equals("")) {
+        String userID = idField.getText()+"";
+        if ("".equals(nameField.getText()+"") ||
+                "".equals(passwordField.getText()+"")
+                || "".equals(idField.getText()+"")) {
             Toast.makeText(Register.this, "Complete all fields", Toast.LENGTH_SHORT).show();
             passwordField.setText("");
         }else {
@@ -108,9 +108,9 @@ public class Register extends AppCompatActivity  {
     }
 
     private void createNewUser(){
-        String name = nameField.getText().toString();
-        String password = passwordField.getText().toString();
-        String userID = idField.getText().toString();
+        String name = nameField.getText()+"";
+        String password = passwordField.getText()+"";
+        String userID = idField.getText()+"";
         accountType type = (accountType) accountTypeSpinner.getSelectedItem();
 
         User user = new User(name, userID, password, true, type);

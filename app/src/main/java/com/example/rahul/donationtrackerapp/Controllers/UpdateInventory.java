@@ -70,7 +70,7 @@ public class UpdateInventory extends AppCompatActivity {
      * attached to donate button
      */
     public void onDonate(View view) {
-        if (value.getText().toString().equals("") || "".equals(briefDetails.getText().toString())
+        if (value.getText().toString().equals("") || "".equals(briefDetails.getText()+"")
                 || fullDescription.getText().equals("")){
             Toast.makeText(UpdateInventory.this, "Please complete all fields",
                     Toast.LENGTH_SHORT).show();
@@ -80,11 +80,11 @@ public class UpdateInventory extends AppCompatActivity {
             return;
         }
 
-        Double M_value = Double.parseDouble(value.getText().toString());
-        String brief_description = briefDetails.getText().toString();
-        String full_description = fullDescription.getText().toString();
+        Double M_value = Double.parseDouble(value.getText()+"");
+        String brief_description = briefDetails.getText()+"";
+        String full_description = fullDescription.getText()+"";
         donationType CATEGORY = (donationType) categorySpinner.getSelectedItem();
-        String LOCATION = locationSpinner.getSelectedItem().toString();
+        String LOCATION = locationSpinner.getSelectedItem()+"";
         String comments = "";
         Timestamp timeStamp = new Timestamp(System.currentTimeMillis());
         String key = itemDatabase.push().getKey();

@@ -71,16 +71,16 @@ public class WelcomeScreen extends AppCompatActivity {
             BufferedReader br = new BufferedReader(new InputStreamReader
                     (is, StandardCharsets.UTF_8));
 
-            String line;
+            String line = br.readLine();
             br.readLine();
-            while ((line = br.readLine()) != null) {
+            while ((line) != null) {
                 final String[] tokens = line.split(",");
 
                 int key = Integer.parseInt(tokens[0]);
                 locationDatabase.child(String.valueOf(key)).addListenerForSingleValueEvent
                         (new ValueEventListener() {
                     @Override
-                    public void onDataChange(DataSnapshot snapshot) {
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.exists()) {
                             //location already exists we do nothing.
                             //could change this to update the information
