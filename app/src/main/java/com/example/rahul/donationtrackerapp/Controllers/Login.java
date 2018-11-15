@@ -1,10 +1,12 @@
 package com.example.rahul.donationtrackerapp.Controllers;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -15,78 +17,116 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.example.rahul.donationtrackerapp.Model.User;
 
-
+/**
+ *  Provides main login functionality for app.
+ *  Authenticates users by checking if the user exists in the database
+ *  and then validates the password. If the password is correct and the
+ *  user is valid, the person is allowed access into the system.
+ */
 public class Login extends AppCompatActivity {
 
     private EditText usernameID;
     private EditText passwordField;
-    private Button login_button;
-    private Button canel_button;
-    private DatabaseReference userDatabase = FirebaseDatabase.getInstance().getReference("users");
+    private final DatabaseReference userDatabase =
+            FirebaseDatabase.getInstance().getReference("users");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        LoginButton();
-
-        /*
-        //auto login for convience
-        usernameID.setText("Bailey");
-        passwordField.setText("Bailey");
-        */
-    }
-
-    public void LoginButton() {
         usernameID = findViewById(R.id.editText_username);
         passwordField = findViewById(R.id.editText_password);
-        login_button = findViewById(R.id.button_login);
     }
 
+
+    /**
+     * Logs the user into app. If the account is locked
+     * the user is notified
+     * @param view current app view
+     */
     public void loginOnPressed(View view) {
-        if (usernameID.getText().toString().equals("") || passwordField.getText().toString().equals("")) {
-            Toast.makeText(Login.this, "Complete all fields", Toast.LENGTH_SHORT).show();
+        final Editable enteredUsername = usernameID.getText();
+        final Editable enteredPassword = passwordField.getText();
+
+        if ("".equals(enteredUsername.toString())
+                || "".equals(enteredPassword.toString())) {
+            Toast incompleteField = Toast.makeText(Login.this,
+                    "Complete all fields", Toast.LENGTH_SHORT);
+            incompleteField.show();
             usernameID.setText("");
             passwordField.setText("");
         }else {
-            String userID = usernameID.getText().toString();
-            userDatabase.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+            String userID = enteredUsername.toString();
+            DatabaseReference userIDReference = userDatabase.child(userID);
+            userIDReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
-                public void onDataChange(DataSnapshot snapshot) {
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.exists()) {
-                        String password = snapshot.child("password").getValue().toString();
-                        String hashPassword = User.passwordHash(passwordField.getText().toString());
-                        Toast.makeText(Login.this, password, Toast.LENGTH_SHORT).show();
-
-                        if (snapshot.child("accountState").getValue().equals(false)){
-                            Toast.makeText(Login.this, "Account is Locked. Contact Admin", Toast.LENGTH_SHORT).show();
+                        DataSnapshot passwordChild = snapshot.child("password");
+                        String password = (String) passwordChild.getValue();
+                        String hashPassword = User.passwordHash(enteredPassword.toString());
+                        DataSnapshot accountStateChild = snapshot.child("accountState");
+                        Boolean accountState = (Boolean) accountStateChild.getValue();
+                        if ((accountState != null) && accountState.equals(false)){
+                            Toast lockedAccount = Toast.makeText(Login.this,
+                                    "Account is Locked. Contact Admin", Toast.LENGTH_SHORT);
+                            lockedAccount.show();
                         }
-                         else if (password.equals(hashPassword)){
-                            Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                         else if ((password != null) && password.equals(hashPassword)){
+                            Toast successfulLogin = Toast.makeText(Login.this,
+                                    "Login Successful", Toast.LENGTH_SHORT);
+                            successfulLogin.show();
                             startActivity(new Intent(Login.this, UserScreen.class));
                         } else {
-                            Integer attemptsRemaining = 3 - Integer.valueOf(snapshot.child("loginAttempts").getValue().toString());
+                            DataSnapshot loginAttemptsChild = snapshot.child("loginAttempts");
+                            Integer attemptsRemaining =
+                                    3 - Integer.valueOf((String) loginAttemptsChild.getValue());
                             if (attemptsRemaining < 1){
-                                Toast.makeText(Login.this, "Login Attempt Failed. Account is now Locked", Toast.LENGTH_SHORT).show();
-                                userDatabase.child(usernameID.getText().toString()).child("accountState").setValue(false);
+                                Toast loginFailedLocked = Toast.makeText(Login.this,
+                                        "Login Attempt Failed. Account is now Locked",
+                                        Toast.LENGTH_SHORT);
+                                loginFailedLocked.show();
+
+                                DatabaseReference usernameReference =
+                                        userDatabase.child(enteredUsername.toString());
+                                DatabaseReference accountStateReference =
+                                        usernameReference.child("accountState");
+                                accountStateReference.setValue(false);
                             }
-                            Toast.makeText(Login.this, "Login Attempt Failed. " + attemptsRemaining + " tries remaining", Toast.LENGTH_SHORT).show();
-                            Integer newAttempts = Integer.valueOf(snapshot.child("loginAttempts").getValue().toString()) + 1;
-                            userDatabase.child(usernameID.getText().toString()).child("loginAttempts").setValue(newAttempts);
+                            Toast loginFailed = Toast.makeText(Login.this,
+                                    "Login Attempt Failed. " + attemptsRemaining +
+                                            " tries remaining", Toast.LENGTH_SHORT);
+                            loginFailed.show();
+
+                            Integer newAttempts =
+                                    Integer.valueOf((String) loginAttemptsChild.getValue() + 1);
+                            DatabaseReference usernameReference =
+                                    userDatabase.child(enteredUsername.toString());
+                            DatabaseReference loginAttemptsReference =
+                                    usernameReference.child("loginAttempts");
+                            loginAttemptsReference.setValue(newAttempts);
                         }
                     } else {
-                        Toast.makeText(Login.this, "User doesn't exist, try again", Toast.LENGTH_SHORT).show();
+                        Toast noUser = Toast.makeText(Login.this,
+                                "User doesn't exist, try again", Toast.LENGTH_SHORT);
+                        noUser.show();
                         usernameID.setText("");
                         passwordField.setText("");
                     }
                 }
                 @Override
-                public void onCancelled(DatabaseError test){
+                public void onCancelled(@NonNull DatabaseError test){
+                    Log.e("DATABASE", test.toString());
                 }
             });
         }
     }
 
+    /**
+     * Cancels login attempt. Takes user back to
+     * WelcomeScreen
+     * @param view current app view
+     */
     public void cancelOnPressed(View view) {
         Intent backToWelcome = new Intent(Login.this, WelcomeScreen.class);
         finish();

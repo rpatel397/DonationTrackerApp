@@ -46,9 +46,10 @@ public class Map extends FragmentActivity implements OnMapReadyCallback {
         List<Location> locations = Model.INSTANCE.getLocations();
 
         for (Location location: locations) {
-            LatLng coord = new LatLng(location.getLatitude(), location.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(coord).title(location.getName()).snippet("Phone number: " + location.getPhone()));
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(coord));
+            LatLng coordinates = new LatLng(location.getLatitude(), location.getLongitude());
+            mMap.addMarker(new MarkerOptions().position(coordinates).
+                    title(location.getName()).snippet("Phone number: " + location.getPhone()));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(coordinates));
         }
     }
 
