@@ -47,6 +47,8 @@ public class Register extends AppCompatActivity  {
         if (nameField.getText().toString().equals("") || passwordField.getText().toString().equals("") || idField.getText().toString().equals("")) {
             Toast.makeText(Register.this, "Complete all fields", Toast.LENGTH_SHORT).show();
             passwordField.setText("");
+            nameField.setText("");
+            idField.setText("");
         }else {
             userDatabase.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
