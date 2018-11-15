@@ -19,7 +19,7 @@ public class InventoryScreen extends AppCompatActivity {
         addItem_button = findViewById(R.id.button_addItem);
     }
 
-    public void onaddItemPressed(View view) {
+    public void onAddItemPressed(View view) {
         Intent intent = new Intent(InventoryScreen.this, UpdateInventory.class);
         startActivity(intent);
     }

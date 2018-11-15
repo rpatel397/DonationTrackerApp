@@ -21,7 +21,6 @@ public class Login extends AppCompatActivity {
     private EditText usernameID;
     private EditText passwordField;
     private Button login_button;
-    private Button canel_button;
     private DatabaseReference userDatabase = FirebaseDatabase.getInstance().getReference("users");
 
     @Override
@@ -31,7 +30,7 @@ public class Login extends AppCompatActivity {
         LoginButton();
 
         /*
-        //auto login for convience
+        //auto login for convenience
         usernameID.setText("Bailey");
         passwordField.setText("Bailey");
         */

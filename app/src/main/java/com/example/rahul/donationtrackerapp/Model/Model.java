@@ -79,6 +79,12 @@ public class Model {
         donations = queryList;
         return queryList.size();
     }
+
+    /**
+     * @param location
+     * @param name
+     * @return
+     */
     public int queryItemsBasedOnName(String location, String name) {
         queryList.clear();
         for (Item it : donations) {
@@ -93,7 +99,7 @@ public class Model {
 
             }else {
                 if (it.getShortDescription().toLowerCase().contains(name.toLowerCase())
-                        /*&& it.getLocation().equals(location)*/) {
+                         && it.getLocation().equals(location)) {
                     queryList.add(it);
                 }
             }

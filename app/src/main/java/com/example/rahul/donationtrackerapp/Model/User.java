@@ -52,6 +52,6 @@ public class User {
     }
 
     public boolean checkPassword(String password){
-        return (this.passwordHash(password).equals(this.password));
+        return (passwordHash(password).equals(this.password));
     }
 }
