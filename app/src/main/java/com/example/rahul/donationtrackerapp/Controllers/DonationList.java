@@ -17,6 +17,9 @@ import com.example.rahul.donationtrackerapp.Model.Model;
 
 import java.util.List;
 
+/**
+ * Class representing the list of donations displayed on the screen.
+ */
 public class DonationList extends AppCompatActivity {
 
     @Override
@@ -33,26 +36,30 @@ public class DonationList extends AppCompatActivity {
         recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(Model.INSTANCE.getDonations()));
     }
 
-    public class SimpleItemRecyclerViewAdapter
+    public final class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
         private final List<Item> mValues;
 
-        public SimpleItemRecyclerViewAdapter(List<Item> items) {
+
+        private SimpleItemRecyclerViewAdapter(List<Item> items) {
             mValues = items;
         }
 
+        @NonNull
         @Override
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.donationitem_list_content, parent, false);
+        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+            View view = layoutInflater.inflate(R.layout.donationitem_list_content, parent, false);
             return new ViewHolder(view);
         }
 
         @Override
-        public void onBindViewHolder(final DonationList.SimpleItemRecyclerViewAdapter.ViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull final DonationList.SimpleItemRecyclerViewAdapter
+                .ViewHolder holder, int position) {
             holder.mItem = mValues.get(position);
-            holder.mContentView.setText(mValues.get(position).getShortDescription());
+            Item item = mValues.get(position);
+            holder.mContentView.setText(item.getShortDescription());
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -70,11 +77,11 @@ public class DonationList extends AppCompatActivity {
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder {
-            public final View mView;
-            public final TextView mContentView;
-            public Item mItem;
+            final View mView;
+            final TextView mContentView;
+            Item mItem;
 
-            public ViewHolder(View view) {
+            ViewHolder(View view) {
                 super(view);
                 mView = view;
                 mContentView = view.findViewById(R.id.content);
@@ -88,6 +95,10 @@ public class DonationList extends AppCompatActivity {
     }
 
 
+    /**
+     * Method detailing what happens when the add item button is pressed.
+     * @param view The view being passed in
+     */
     public void addItemOnPressed(View view) {
         Intent intent = new Intent(this, UpdateInventory.class);
         setContentView(R.layout.activity_update_inventory);
