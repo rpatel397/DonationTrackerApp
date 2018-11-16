@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 //import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 import java.sql.Timestamp;
@@ -58,7 +59,7 @@ public class UpdateInventory extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categorySpinner.setAdapter(adapter);
 
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<>
+        SpinnerAdapter adapter2 = new ArrayAdapter<>
                 (this,android.R.layout.simple_spinner_item, legalLocations);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         locationSpinner.setAdapter(adapter2);
@@ -71,8 +72,10 @@ public class UpdateInventory extends AppCompatActivity {
     public void onDonate(View view) {
         if ((("").equals(value.getText()+"")) || (("").equals(briefDetails.getText()+"")) ||
                 (("").equals(fullDescription.getText()+""))){
-            Toast.makeText(UpdateInventory.this, "Please complete all fields",
-                    Toast.LENGTH_SHORT).show();
+            Toast incompleteField = Toast.makeText
+                    (UpdateInventory.this, "Please complete all fields",
+                    Toast.LENGTH_SHORT);
+            incompleteField.show();
             value.setText("");
             briefDetails.setText("");
             fullDescription.setText("");
@@ -86,7 +89,8 @@ public class UpdateInventory extends AppCompatActivity {
         String LOCATION = locationSpinner.getSelectedItem()+"";
         String comments = "";
         Timestamp timeStamp = new Timestamp(System.currentTimeMillis());
-        String key = itemDatabase.push().getKey();
+        DatabaseReference userIdReference = itemDatabase.push();
+        String key = userIdReference.getKey();
 
         Item item = new Item(M_value, timeStamp, brief_description, full_description, comments,
                 CATEGORY, LOCATION);

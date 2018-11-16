@@ -66,8 +66,10 @@ public class Search extends AppCompatActivity {
                 name.getText()+"") > 0){
             startActivity(intent);
         } else {
-            Toast.makeText(Search.this, "There are no items with" + name.getText()+""
-                    + " in the inventory.", Toast.LENGTH_SHORT).show();
+            Toast incompleteField = Toast.makeText
+                    (Search.this, "There are no items with" + name.getText()+""
+                    + " in the inventory.", Toast.LENGTH_SHORT);
+            incompleteField.show();
         }
     }
 
@@ -82,9 +84,10 @@ public class Search extends AppCompatActivity {
                 category.getSelectedItem()+"") > 0) {
             startActivity(intent);
         } else {
-            Toast.makeText(Search.this, "There are no items with" +
+            Toast incompleteField = Toast.makeText(Search.this, "There are no items with" +
                     category.getSelectedItem()+""
-                    + " in the inventory.", Toast.LENGTH_SHORT).show();
+                    + " in the inventory.", Toast.LENGTH_SHORT);
+            incompleteField.show();
         }
 
     }

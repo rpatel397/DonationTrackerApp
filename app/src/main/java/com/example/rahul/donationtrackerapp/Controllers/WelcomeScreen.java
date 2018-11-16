@@ -1,6 +1,7 @@
 package com.example.rahul.donationtrackerapp.Controllers;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,7 +28,7 @@ import java.nio.charset.StandardCharsets;
  */
 public class WelcomeScreen extends AppCompatActivity {
     private static final String TAG = "Donation_Tracker";
-    private static boolean startUp = true;
+    private boolean startUp = true;
     private final DatabaseReference locationDatabase = FirebaseDatabase.getInstance().getReference
             ("locations");
 
@@ -64,24 +65,26 @@ public class WelcomeScreen extends AppCompatActivity {
 
     private void updateLocationDatabase() {
         try {
-            InputStream is = getResources().openRawResource(R.raw.locationdata);
+            Resources res = getResources();
+            InputStream is = res.openRawResource(R.raw.locationdata);
+
             BufferedReader br = new BufferedReader
                     (new InputStreamReader(is, StandardCharsets.UTF_8));
 
             String line;
             br.readLine();
-            while ((line = br.readLine() ) != null) {
+            while ((line  = br.readLine()) != null) {
+
                 final String[] tokens = line.split(",");
 
                 int key = Integer.parseInt(tokens[0]);
-                locationDatabase.child(String.valueOf(key)).addListenerForSingleValueEvent
+                DatabaseReference userIdReference = locationDatabase.child(String.valueOf(key));
+                userIdReference.addListenerForSingleValueEvent
                         (new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.exists()) {
-                            //location already exists we do nothing.
-                            //could change this to update the information
-                        } else {
+                        if (!snapshot.exists()) {
+
                             addNewLocation(tokens);
                         }
                     }
@@ -104,11 +107,15 @@ public class WelcomeScreen extends AppCompatActivity {
         double latitude = Double.parseDouble(tokens[2]);
         double longitude = Double.parseDouble(tokens[3]);
         int zip = Integer.parseInt(tokens[7]);
-        locationType type = locationType.valueOf(tokens[8].replaceAll("\\s+","").toUpperCase());
+        String str = tokens[0].replaceAll("\\s+","");
+        String str2 = str.toUpperCase();
+        locationType type = locationType.valueOf(str2);
 
         Location location  = new Location(key,       tokens[1], latitude, longitude,
                                           tokens[4], tokens[5], tokens[6],  zip,
                                           type     , tokens[9], tokens[10]);
-        locationDatabase.child(String.valueOf(key)).setValue(location);
+        DatabaseReference userIdReference = locationDatabase.child(String.valueOf(key));
+        userIdReference.setValue(location);
+
     }
 }

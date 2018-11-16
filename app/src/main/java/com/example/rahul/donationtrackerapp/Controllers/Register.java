@@ -59,24 +59,32 @@ public class Register extends AppCompatActivity  {
         String userID = idField.getText()+ "";
         if (("".equals(nameField.getText()+"")) || ("".equals(passwordField.getText()+"")) ||
                 ("".equals(idField.getText()+""))) {
-            Toast.makeText(Register.this, "Complete all fields", Toast.LENGTH_SHORT).show();
+            Toast incompleteField = Toast.makeText
+                    (Register.this, "Complete all fields", Toast.LENGTH_SHORT);
+            incompleteField.show();
+
             passwordField.setText("");
         }else {
-            userDatabase.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+            DatabaseReference userIdReference = userDatabase.child(userID);
+            userIdReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.exists()) {
-                        Toast.makeText(Register.this, "User already registered",
-                                Toast.LENGTH_SHORT).show();
+                        Toast incompleteField = Toast.makeText
+                                (Register.this, "User already registered",
+                                Toast.LENGTH_SHORT);
+                        incompleteField.show();
+
                         nameField.setText("");
                         passwordField.setText("");
                         idField.setText("");
                         accountTypeSpinner.setSelection(0);
                     } else {
                         createNewUser();
-                        Toast.makeText
+                        Toast incompleteField = Toast.makeText
                                 (Register.this, "User registered, logging in...",
-                                        Toast.LENGTH_SHORT).show();
+                                        Toast.LENGTH_SHORT);
+                        incompleteField.show();
                         startActivity(new Intent(Register.this, UserScreen.class));
                     }
                 }
