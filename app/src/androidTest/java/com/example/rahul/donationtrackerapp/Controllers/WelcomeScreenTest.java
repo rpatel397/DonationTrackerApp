@@ -22,6 +22,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 
 //Made by Mitchell Stasko
+//Tests the register class (sorry for the bad naming...)
 
 @RunWith(AndroidJUnit4.class)
 public class WelcomeScreenTest {
@@ -38,6 +39,7 @@ public class WelcomeScreenTest {
     @Test(expected = android.support.test.espresso.NoMatchingViewException.class)
     public void checkAdd() {
 
+        //Check registering with an incomplete field
 
         onView(withId(R.id.editText_Name)).perform(typeText(""), closeSoftKeyboard());
         onView(withId(R.id.editText_ID)).perform(typeText("Test"), closeSoftKeyboard());
@@ -50,6 +52,9 @@ public class WelcomeScreenTest {
         onView(withId(R.id.editText_Name)).check(matches(withText("")));
         onView(withId(R.id.editText_Name)).check(matches(withText("")));
 
+        //End check for incomplete field, should stay on screen and reset all fields
+        //Check registering an already registered user
+
         onView(withId(R.id.editText_Name)).perform(typeText("Bailey"), closeSoftKeyboard());
         onView(withId(R.id.editText_ID)).perform(typeText("Bailey"), closeSoftKeyboard());
         onView(withId(R.id.editText_Password)).perform(typeText("Bailey"), closeSoftKeyboard());
@@ -60,6 +65,9 @@ public class WelcomeScreenTest {
         onView(withId(R.id.editText_Name)).check(matches(withText("")));
         onView(withId(R.id.editText_Name)).check(matches(withText("")));
 
+        //End already registered user. Should fail to register and reset all fields
+        //Register an unregistered user
+
         onView(withId(R.id.editText_Name)).perform(typeText("Test"), closeSoftKeyboard());
         onView(withId(R.id.editText_ID)).perform(typeText("Test"), closeSoftKeyboard());
         onView(withId(R.id.editText_Password)).perform(typeText("Test"), closeSoftKeyboard());
@@ -67,6 +75,10 @@ public class WelcomeScreenTest {
         onView(withId(R.id.button_registrationLogin)).perform(click());
 
         onView(withId(R.id.editText_Name)).check(matches(withText("")));
+
+        //End register an unregistered user.
+        // Should throw a android.support.test.espresso.NoMatchingViewException
+        //Because the view for registering is gone after the register completes
 
     }
 }
