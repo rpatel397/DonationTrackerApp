@@ -30,7 +30,8 @@ public class Item {
      * @param category - donationType - type of donation made aka category of ite
      * @param location - Location - where the donation was made
      */
-    public Item(double value, Timestamp timeStamp, String shortDescription, String fullDescription, String comments, donationType category, String location) {
+    public Item(double value, Timestamp timeStamp, String shortDescription, String fullDescription,
+                String comments, donationType category, String location) {
         this.key = timeStamp.hashCode();
         this.value = value;
         this.timeStamp = timeStamp.toString();
@@ -66,7 +67,7 @@ public class Item {
      * Gets the time the item was donated
      * @return String - The time of the item's donation
      */
-    public String getTimeStamp() {
+    public CharSequence getTimeStamp() {
         return timeStamp;
     }
 //    public void setTimeStamp(String timeStamp) {
@@ -88,7 +89,7 @@ public class Item {
      * Gets the large description of the item
      * @return String - the complete description of the item
      */
-    public String getFullDescription() {
+    public CharSequence getFullDescription() {
         return fullDescription;
     }
 //    public void setFullDescription(String fullDescription) {

@@ -76,7 +76,6 @@ public class Login extends AppCompatActivity {
                          else if ((password != null) && password.equals(hashPassword)){
                             Toast successfulLogin = Toast.makeText(Login.this,
                                     "Login Successful", Toast.LENGTH_SHORT);
-                            passwordField.setText("success");
                             successfulLogin.show();
                             startActivity(new Intent(Login.this, UserScreen.class));
                         } else {

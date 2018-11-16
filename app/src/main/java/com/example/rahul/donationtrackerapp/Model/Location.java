@@ -83,7 +83,7 @@ public class Location {
      * Gets the location's address
      * @return String - the address of the location
      */
-    public String getAddress() { return address; }
+    public CharSequence getAddress() { return address; }
     //public String getCity() { return city; }
 
     //public String getState() { return state; }
