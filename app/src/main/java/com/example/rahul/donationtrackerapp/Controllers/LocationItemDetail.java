@@ -1,10 +1,19 @@
 package com.example.rahul.donationtrackerapp.Controllers;
 
 import android.content.Intent;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+/**
+ * Used by LocationList.java to display a list of locations
+ * that can be clicked on to display additional pertinent
+ * information on a separate screen. Utilizes the
+ * LocationItemDetailFragment.java to display the location
+ * details
+ */
 public class LocationItemDetail extends AppCompatActivity {
 
     @Override
@@ -14,13 +23,17 @@ public class LocationItemDetail extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             Bundle arguments = new Bundle();
+            Intent currentIntent = getIntent();
             arguments.putInt(LocationItemDetailFragment.ARG_ITEM_ID,
-                    getIntent().getIntExtra(LocationItemDetailFragment.ARG_ITEM_ID, 1000));
+                    currentIntent.getIntExtra(LocationItemDetailFragment.ARG_ITEM_ID, 1000));
             LocationItemDetailFragment fragment = new LocationItemDetailFragment();
             fragment.setArguments(arguments);
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.locationitem_detail_container, fragment)
-                    .commit();
+
+
+            FragmentManager supportFragManager =  getSupportFragmentManager();
+            FragmentTransaction transaction = supportFragManager.beginTransaction();
+            transaction.add(R.id.locationitem_detail_container, fragment);
+            transaction.commit();
         }
     }
 

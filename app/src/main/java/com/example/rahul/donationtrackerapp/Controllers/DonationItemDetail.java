@@ -1,15 +1,20 @@
 package com.example.rahul.donationtrackerapp.Controllers;
 
 import android.content.Intent;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.Display;
+//import android.util.DisplayMetrics;
+//import android.util.Log;
+//import android.view.Display;
 import android.view.MenuItem;
-import android.widget.EditText;
-import android.widget.Spinner;
+//import android.widget.EditText;
+//import android.widget.Spinner;
 
+/**
+ * Class that outlines the details of a given donation item on the screen.
+ */
 public class DonationItemDetail extends AppCompatActivity {
 
     @Override
@@ -19,13 +24,17 @@ public class DonationItemDetail extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             Bundle arguments = new Bundle();
-            arguments.putInt(DonationItemDetailFragment.ARG_ITEM_ID,
-                    getIntent().getIntExtra(DonationItemDetailFragment.ARG_ITEM_ID, 1000));
+            Intent intent = getIntent();
+            int getInt = intent.getIntExtra(DonationItemDetailFragment.ARG_ITEM_ID, 1000);
+            arguments.putInt(DonationItemDetailFragment.ARG_ITEM_ID, getInt);
             DonationItemDetailFragment fragment = new DonationItemDetailFragment();
             fragment.setArguments(arguments);
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.donationitem_detail_container, fragment)
-                    .commit();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.commit();
+            FragmentTransaction fragmentTransaction2 = fragmentTransaction.add(R.id
+                    .donationitem_detail_container, fragment);
+            fragmentTransaction2.commit();
         }
     }
 

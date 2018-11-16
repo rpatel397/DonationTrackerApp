@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,15 +13,13 @@ import android.widget.TextView;
 
 import com.example.rahul.donationtrackerapp.Model.Location;
 import com.example.rahul.donationtrackerapp.Model.Model;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
+/**
+ * Organizes location into a scrollable list that can be
+ * expanded to reveal addition location details.
+ */
 public class LocationList extends AppCompatActivity {
 
     @Override
@@ -34,40 +31,34 @@ public class LocationList extends AppCompatActivity {
         setupRecyclerView((RecyclerView) recyclerView);
     }
 
-    private void restartActivity(){
-        Intent restartList = new Intent(LocationList.this, LocationList.class);
-        restartList.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        overridePendingTransition(0, 0);
-        finish();
-        startActivity(restartList);
-        overridePendingTransition(0, 0);
-    }
-
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
         recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(Model.INSTANCE.getLocations()));
     }
 
-
-    public class SimpleItemRecyclerViewAdapter
+    public final class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
         private final List<Location> mValues;
 
-        public SimpleItemRecyclerViewAdapter(List<Location> items) {
+        private SimpleItemRecyclerViewAdapter(List<Location> items) {
             mValues = items;
         }
 
+        @NonNull
         @Override
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext())
+        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            LayoutInflater layoutInflated = LayoutInflater.from(parent.getContext());
+
+            View view = layoutInflated
                     .inflate(R.layout.locationitem_list_content, parent, false);
             return new ViewHolder(view);
         }
 
         @Override
-        public void onBindViewHolder(final ViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
             holder.mItem = mValues.get(position);
-            holder.mContentView.setText(mValues.get(position).getName());
+            Location location = mValues.get(position);
+            holder.mContentView.setText(location.getName());
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -85,11 +76,11 @@ public class LocationList extends AppCompatActivity {
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder {
-            public final View mView;
-            public final TextView mContentView;
-            public Location mItem;
+            private final View mView;
+            private final TextView mContentView;
+            private Location mItem;
 
-            public ViewHolder(View view) {
+            ViewHolder(View view) {
                 super(view);
                 mView = view;
                 mContentView = view.findViewById(R.id.content);
