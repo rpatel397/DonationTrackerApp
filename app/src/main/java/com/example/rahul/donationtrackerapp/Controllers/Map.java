@@ -2,6 +2,7 @@ package com.example.rahul.donationtrackerapp.Controllers;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 
 import com.example.rahul.donationtrackerapp.Model.Location;
 import com.example.rahul.donationtrackerapp.Model.Model;
@@ -9,23 +10,31 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
 
+/**
+ * Adds map functionality to the app. All donation locations are added to the map and displayed
+ * as pins. The user has the option to select a pin and view additional location details.
+ */
 public class Map extends FragmentActivity implements OnMapReadyCallback {
-
-    private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+        FragmentManager fragManager = getSupportFragmentManager();
+
+        SupportMapFragment mapFragment = (SupportMapFragment) fragManager
                 .findFragmentById(R.id.map);
+        assert mapFragment != null;
         mapFragment.getMapAsync(this);
+
+        //Objects.requireNonNull(mapFragment).getMapAsync(this);
     }
 
 
@@ -40,15 +49,21 @@ public class Map extends FragmentActivity implements OnMapReadyCallback {
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-        mMap.getUiSettings().setZoomControlsEnabled(true);
+
+        UiSettings settings = googleMap.getUiSettings();
+        settings.setZoomControlsEnabled(true);
 
         List<Location> locations = Model.INSTANCE.getLocations();
 
         for (Location location: locations) {
-            LatLng coord = new LatLng(location.getLatitude(), location.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(coord).title(location.getName()).snippet("Phone number: " + location.getPhone()));
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(coord));
+            LatLng coordinates = new LatLng(location.getLatitude(), location.getLongitude());
+            MarkerOptions marker = new MarkerOptions();
+            marker.position(coordinates);
+            marker.title(location.getName());
+            marker.snippet("Phone number: " + location.getPhone());
+
+            googleMap.addMarker(marker);
+            googleMap.moveCamera(CameraUpdateFactory.newLatLng(coordinates));
         }
     }
 
