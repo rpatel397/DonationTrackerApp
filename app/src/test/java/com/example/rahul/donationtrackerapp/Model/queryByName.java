@@ -13,6 +13,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
+//Made by Rakesh
 public class queryByName {
 
     private Model actualItems = Model.INSTANCE;
