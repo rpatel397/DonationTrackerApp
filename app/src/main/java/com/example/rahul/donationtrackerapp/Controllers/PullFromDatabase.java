@@ -16,12 +16,13 @@ import com.google.firebase.database.ValueEventListener;
  * Pulls data from fire base and adds it to our model. Items include a list of locations
  * and a list of donated items.
  */
-public class PullFromDatabase {
+ class PullFromDatabase {
 
     private static final DatabaseReference locationDatabase =
             FirebaseDatabase.getInstance().getReference("locations");
     private static final DatabaseReference itemDatabase =
             FirebaseDatabase.getInstance().getReference("items");
+
 
     /**
      * Deletes current list of locations stored in model and adds locations from database to
