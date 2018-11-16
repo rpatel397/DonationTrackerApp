@@ -21,6 +21,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 
+//Made by Mitchell Stasko
 
 @RunWith(AndroidJUnit4.class)
 public class WelcomeScreenTest {
