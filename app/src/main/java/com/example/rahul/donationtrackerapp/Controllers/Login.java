@@ -76,9 +76,17 @@ public class Login extends AppCompatActivity {
                          else if ((password != null) && password.equals(hashPassword)){
                             Toast successfulLogin = Toast.makeText(Login.this,
                                     "Login Successful", Toast.LENGTH_SHORT);
+                            passwordField.setText("success");
                             successfulLogin.show();
                             startActivity(new Intent(Login.this, UserScreen.class));
                         } else {
+                            Toast failedLogin = Toast.makeText(Login.this,
+                                    "Login Failed", Toast.LENGTH_SHORT);
+                            failedLogin.show();
+                            usernameID.setText("");
+                            passwordField.setText("");
+
+                            /*
                             DataSnapshot loginAttemptsChild = snapshot.child("loginAttempts");
                             Integer attemptsRemaining =
                                     3 - Integer.valueOf((String) loginAttemptsChild.getValue());
@@ -94,6 +102,8 @@ public class Login extends AppCompatActivity {
                                         usernameReference.child("accountState");
                                 accountStateReference.setValue(false);
                             }
+
+                            System.out.println("LOGIN TESTING");
                             Toast loginFailed = Toast.makeText(Login.this,
                                     "Login Attempt Failed. " + attemptsRemaining +
                                             " tries remaining", Toast.LENGTH_SHORT);
@@ -106,6 +116,7 @@ public class Login extends AppCompatActivity {
                             DatabaseReference loginAttemptsReference =
                                     usernameReference.child("loginAttempts");
                             loginAttemptsReference.setValue(newAttempts);
+                            */
                         }
                     } else {
                         Toast noUser = Toast.makeText(Login.this,
