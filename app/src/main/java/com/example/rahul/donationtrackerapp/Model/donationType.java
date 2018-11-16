@@ -1,5 +1,10 @@
 package com.example.rahul.donationtrackerapp.Model;
 
+import android.support.annotation.NonNull;
+
+/**
+ * Enum for the type of donation being donated
+ */
 public enum donationType {
     CLOTHING("Clothing", 0),
     HAT("Hat", 1),
@@ -8,21 +13,29 @@ public enum donationType {
     HOUSEHOLD("Household", 4),
     OTHER("Other", 5);
 
-    private int index;
-    private String category;
+    //private final int index;
+    private final String category;
+
     donationType(String category, int index) {
         this.category = category;
-        this.index = index;
+        //this.index = index;
     }
 
-    public int getIndex(){
-        return index;
-    }
+
+//    public int getIndex(){
+//        return index;
+//    }
+
+    /**
+     * Get the category of the donation
+     * @return string - the category of the donation
+     */
     public String getCategory(){
         return category;
     }
 
     @Override
+    @NonNull
     public String toString() {
         return this.category;
     }

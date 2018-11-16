@@ -64,6 +64,8 @@ public class Register extends AppCompatActivity  {
             incompleteField.show();
 
             passwordField.setText("");
+            nameField.setText("");
+            idField.setText("");
         }else {
             DatabaseReference userIdReference = userDatabase.child(userID);
             userIdReference.addListenerForSingleValueEvent(new ValueEventListener() {
