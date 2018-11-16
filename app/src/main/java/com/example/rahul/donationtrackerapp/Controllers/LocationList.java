@@ -86,6 +86,7 @@ public class LocationList extends AppCompatActivity {
                 mContentView = view.findViewById(R.id.content);
             }
 
+            @NonNull
             @Override
             public String toString() {
                 return super.toString() + " '" + mContentView.getText() + "'";
