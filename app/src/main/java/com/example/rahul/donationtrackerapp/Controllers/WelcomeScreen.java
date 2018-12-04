@@ -107,8 +107,9 @@ public class WelcomeScreen extends AppCompatActivity {
         double latitude = Double.parseDouble(tokens[2]);
         double longitude = Double.parseDouble(tokens[3]);
         int zip = Integer.parseInt(tokens[7]);
-        String str = tokens[0].replaceAll("\\s+","");
+        String str = tokens[8].replaceAll("\\s+","");
         String str2 = str.toUpperCase();
+        System.out.println("FIND ME " + str2);
         locationType type = locationType.valueOf(str2);
 
         Location location  = new Location(key,       tokens[1], latitude, longitude,

@@ -125,7 +125,6 @@ public class Register extends AppCompatActivity  {
         accountType type = (accountType) accountTypeSpinner.getSelectedItem();
 
         User user = new User(name, userID, password, true, type);
-        userDatabase.child(userID);
-        userDatabase.setValue(user);
+        userDatabase.child(userID).setValue(user);
     }
 }

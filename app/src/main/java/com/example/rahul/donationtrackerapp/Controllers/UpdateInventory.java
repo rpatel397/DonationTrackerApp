@@ -94,8 +94,7 @@ public class UpdateInventory extends AppCompatActivity {
 
         Item item = new Item(M_value, timeStamp, brief_description, full_description, comments,
                 CATEGORY, LOCATION);
-        itemDatabase.child(Objects.requireNonNull(key));
-        itemDatabase.setValue(item);
+        itemDatabase.child(Objects.requireNonNull(key)).setValue(item);
         PullFromDatabase.updateDonations();
 
         Intent intent = new Intent(UpdateInventory.this, InventoryScreen.class);

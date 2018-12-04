@@ -85,20 +85,16 @@ public class Login extends AppCompatActivity {
                             usernameID.setText("");
                             passwordField.setText("");
 
-                            /*
+
                             DataSnapshot loginAttemptsChild = snapshot.child("loginAttempts");
-                            Integer attemptsRemaining =
-                                    3 - Integer.valueOf((String) loginAttemptsChild.getValue());
+                            Integer attemptsRemaining = 3 - Integer.valueOf(snapshot.child("loginAttempts").getValue().toString());
                             if (attemptsRemaining < 1){
                                 Toast loginFailedLocked = Toast.makeText(Login.this,
                                         "Login Attempt Failed. Account is now Locked",
                                         Toast.LENGTH_SHORT);
                                 loginFailedLocked.show();
-
-                                DatabaseReference usernameReference =
-                                        userDatabase.child(enteredUsername.toString());
-                                DatabaseReference accountStateReference =
-                                        usernameReference.child("accountState");
+                                DatabaseReference usernameReference =  userDatabase.child(enteredUsername.toString());
+                                DatabaseReference accountStateReference =  usernameReference.child("accountState");
                                 accountStateReference.setValue(false);
                             }
 
@@ -108,14 +104,13 @@ public class Login extends AppCompatActivity {
                                             " tries remaining", Toast.LENGTH_SHORT);
                             loginFailed.show();
 
-                            Integer newAttempts =
-                                    Integer.valueOf((String) loginAttemptsChild.getValue() + 1);
+                            Integer newAttempts =  Integer.valueOf(snapshot.child("loginAttempts").getValue().toString()) + 1;
                             DatabaseReference usernameReference =
                                     userDatabase.child(enteredUsername.toString());
                             DatabaseReference loginAttemptsReference =
                                     usernameReference.child("loginAttempts");
                             loginAttemptsReference.setValue(newAttempts);
-                            */
+
                         }
                     } else {
                         Toast noUser = Toast.makeText(Login.this,

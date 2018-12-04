@@ -24,17 +24,13 @@ public class DonationItemDetail extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             Bundle arguments = new Bundle();
-            Intent intent = getIntent();
-            int getInt = intent.getIntExtra(DonationItemDetailFragment.ARG_ITEM_ID, 1000);
-            arguments.putInt(DonationItemDetailFragment.ARG_ITEM_ID, getInt);
+            arguments.putInt(DonationItemDetailFragment.ARG_ITEM_ID,
+                    getIntent().getIntExtra(DonationItemDetailFragment.ARG_ITEM_ID, 1000));
             DonationItemDetailFragment fragment = new DonationItemDetailFragment();
             fragment.setArguments(arguments);
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.commit();
-            FragmentTransaction fragmentTransaction2 = fragmentTransaction.add(R.id
-                    .donationitem_detail_container, fragment);
-            fragmentTransaction2.commit();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.donationitem_detail_container, fragment)
+                    .commit();
         }
     }
 
